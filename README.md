@@ -13,4 +13,4 @@
 ### Context-Aware Recommender Systems
 
 * Context In Recommender Systems @ [ACM SAC 2016](https://www.slideshare.net/irecsys/tutorial-context-in-recommender-systems)
-* Context-awareness In Information Retrieval and Recommender Systems @ [IEEE/WIC/ACM WI 2016]
+* Context-awareness In Information Retrieval and Recommender Systems @ IEEE/WIC/ACM WI 2016
