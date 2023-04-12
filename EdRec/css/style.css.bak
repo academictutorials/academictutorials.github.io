@@ -997,12 +997,23 @@ h1, h2, h3, h4, h5,
   background: #FF9966; }
   .courses-title .section-title {
     color: #fff; }
+
+.presenters {
+  padding-bottom: 13rem;
+  background: #e6fff2; }
+  .courses-title .section-title {
+    color: #fff; }	
 	
+.slides {
+  padding-bottom: 13rem;
+  background: #76b5c5; }
+  .courses-title .section-title {
+    color: #fff; }		
 	
 .programs {
   padding-bottom: 13rem;
   background: #6699ff; }
-  .courses-title .section-title {
+  .programs .section-title {
     color: #fff; }
 
 	
