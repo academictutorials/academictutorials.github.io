@@ -1,5 +1,10 @@
 # List of Academic Tutorials
 
+### Educational Recommender Systems
+
+* Educational Recommender Systems @ [AIED 2023](https://academictutorials.github.io/EdRec/index.html)
+* Educational Recommender Systems @ IEEE EDUCON 2023
+
 ### Multi-Objective Recommender Systems
 
 * Multi-Objective Recommendations @ [ACM SIGKDD 2021](https://moorecsys.github.io/KDD2021/index.html)
