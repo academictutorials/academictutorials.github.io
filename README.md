@@ -1,5 +1,9 @@
 # List of Academic Tutorials
 
+### LLM-Based Recommender Systems
+
+* Understanding Language Modeling Paradigm Adaptations in Recommender Systems: Lessons Learned and Open Challenges @ [ECAI 2024](https://academictutorials.github.io/LLMRec/index.html)
+
 ### Educational Recommender Systems
 
 * Educational Recommender Systems @ [AIED 2023](https://academictutorials.github.io/EdRec/index.html)
