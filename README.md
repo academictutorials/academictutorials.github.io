@@ -1,4 +1,4 @@
-# List of Academic Tutorials
+# List of Academic Tutorials by [Dr. Yong Zheng](https://itm.iit.edu/zheng/)
 
 ### LLM-Based Recommender Systems
 
