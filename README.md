@@ -2,7 +2,7 @@
 
 ### LLM-Based Recommender Systems
 
-* Understanding Language Modeling Paradigm Adaptations in Recommender Systems: Lessons Learned and Open Challenges @ [ECAI 2024](https://academictutorials.github.io/LLMRec/index.html)
+* [Understanding Language Modeling Paradigm Adaptations in Recommender Systems: Lessons Learned and Open Challenges](https://academictutorials.github.io/LLMRec/index.html) @ [ECAI 2024](https://www.ecai2024.eu/)
 
 ### Educational Recommender Systems
 
