@@ -36,6 +36,19 @@
 
     <link rel="stylesheet" href="css/style.css">
     
+    <style>
+      /* 顶部菜单：纯 CSS 固定，不依赖 jquery.sticky.js，因此不会闪烁 */
+      #sticky-wrapper { background: transparent; }
+      #sticky-wrapper .site-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: auto;
+        z-index: 1000;
+        background: rgb(220, 20, 60);
+      }
+    </style>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-aos-easing="slide" data-aos-duration="800" data-aos-delay="0">
   
@@ -73,7 +86,7 @@
     </div>
    
     
-    <div id="sticky-wrapper" class="sticky-wrapper is-sticky" style="height: 59px;background: rgb(220, 20, 60);"><header class="site-navbar py-4 js-sticky-header site-navbar-target shrink" role="banner" style="width: 1903px; position: fixed; top: 0px; z-index: inherit;background: rgb(220, 20, 60);">
+    <div id="sticky-wrapper" class="sticky-wrapper"><header class="site-navbar py-4 site-navbar-target" role="banner">
       
       <div class="container-fluid">
         <div class="d-flex align-items-center">
@@ -344,4 +357,20 @@ This half-day tutorial aims to provide a thorough understanding of extracting an
   <script src="js/main.js"></script>
     
   
+  <script>
+    // 让 #sticky-wrapper 的高度始终等于固定导航栏的实际高度，
+    // 这样下面的内容不会被盖住。无滚动监听 -> 不会闪烁。
+    (function () {
+      var nav = document.querySelector('#sticky-wrapper .site-navbar');
+      var wrap = document.getElementById('sticky-wrapper');
+      if (!nav || !wrap) return;
+      function sizeSpacer() { wrap.style.height = nav.offsetHeight + 'px'; }
+      sizeSpacer();
+      window.addEventListener('load', sizeSpacer);
+      window.addEventListener('resize', sizeSpacer);
+      // 如果 main.js 会在滚动时给导航栏加 shrink 改变高度，这里自动跟随
+      if (window.ResizeObserver) { new ResizeObserver(sizeSpacer).observe(nav); }
+    })();
+  </script>
+
 </body></html>
