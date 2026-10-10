@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MR7NHGQNZH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MR7NHGQNZH');
+</script>
+
+    <title>Test Questions | Hands-on RAG for Education | ACM SIGCITE 2026 Tutorial</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Hands-on RAG for Education: From a Generic Chatbot to a Document-Grounded System. A tutorial at ACM SIGCITE 2026, University of North Carolina Wilmington.">
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+      /* Sky-blue theme for SIGCITE 2026 at UNCW. These rules override css/style.css. */
+      :root {
+        --sky: #1479b8;        /* main section color, white text stays readable */
+        --sky-deep: #e88a42;   /* navbar and alternating sections */
+        --sky-dark: #0a4a74;   /* hero tint */
+        --sky-pale: #eaf5fc;   /* light section background */
+        --sand: #ffd27a;       /* links on blue backgrounds */
+      }
+
+      /* Top menu: fixed with plain CSS (no jquery.sticky.js), so it does not flicker */
+      #sticky-wrapper { background: transparent; }
+      #sticky-wrapper .site-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: auto;
+        z-index: 1000;
+        background: var(--sky-deep);
+      }
+
+      .intro-section .slide-1 {
+        background-color: var(--sky-dark);
+        background-blend-mode: multiply;
+      }
+      .intro-section h1 { line-height: 1.15; }
+      .intro-section .subtitle {
+        color: #fff;
+        font-size: 1.6rem;
+        font-weight: 300;
+        margin-bottom: 1.25rem;
+      }
+      .intro-section .event, .intro-section .event a { color: #fff; }
+      .intro-section .event a { text-decoration: underline; }
+      .conf-logos { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 0.5rem; }
+      .conf-logos img {
+        height: 99px;
+        width: auto;
+        max-width: 100%;
+        background: #fff;
+        padding: 8px 12px;
+        border-radius: 6px;
+      }
+
+      .site-section.courses-title { background: var(--sky) !important; }
+      .site-section.programs{ background: #bf2458 !important; }
+      .site-section.presenters { background: var(--sky) !important; }
+      .site-section.slides { background: #822dd6 !important; }
+
+      .on-blue, .on-blue p, .on-blue li, .on-blue h4 { color: #fff; }
+      .on-blue a { color: var(--sand); text-decoration: underline; }
+      .on-blue a:hover, .on-blue a:focus { color: #fff; }
+      .on-blue ul { text-align: left; padding-left: 1.25rem; }
+      .on-blue li { margin-bottom: 0.35rem; }
+      .module-time { font-weight: 400; opacity: 0.85; }
+      .note { opacity: 0.85; font-style: italic; }
+
+      .presenters .teacher h3 a { color: var(--sky-deep); }
+      .presenters .teacher p { color: #fff; }
+	  .presenters .teacher {
+		  border: 2px solid #1479b8;   /* 边框颜色和粗细，这里用的是页面的主色天蓝 */
+		  border-radius: 8px;
+		  padding: 2rem 1.5rem;        /* 内边距加大，框会显得更宽松 */
+		  background: #606060;
+		}
+	  .presenters .teacher { max-width: 360px; margin: 0 auto; }
+	  
+	  
+	.footer-section { padding: 1.5rem 0 !important; }
+	.site-section.slides { padding-bottom: 3rem !important; }
+	.footer-section { background: #404040 !important; }
+	.footer-section,
+.footer-section p,
+.footer-section a,
+.footer-section i {
+  color: #fff !important;
+}
+.footer-section {
+  border-top: none !important;
+  margin-top: 0 !important;
+}
+.site-section.slides { margin-bottom: 0 !important; }
+
+
+#sticky-wrapper .site-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  z-index: 1000;
+  background: #e67b3e;   /* 改这里 */
+}
+    </style>
+
+    <style>
+      /* Test-questions page. Same theme as index.html, content sits in one Materials-style section. */
+      .qa-section .section-title { margin-bottom: 0.5rem; }
+      .qa-section .back-link { text-align: left; margin-bottom: 2rem; }
+      .qa-section h3.part {
+        color: #fff;
+        text-align: left;
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin: 3rem 0 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+      }
+      .qa-section .intro { text-align: left; }
+      .qa-card {
+        text-align: left;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 8px;
+        padding: 1.5rem 1.75rem;
+        margin: 1.5rem 0 0;
+      }
+      .qa-card h4 { color: #fff; font-size: 1.05rem; font-weight: 700; margin: 0 0 0.4rem; opacity: 0.9; }
+      .qa-card h4 .qid { color: var(--sand); margin-right: 0.4rem; }
+      .qa-card .question { color: #fff; font-size: 1.25rem; font-weight: 700; line-height: 1.45; margin: 0 0 1rem; }
+      .qa-card .question.long { font-size: 1.08rem; }
+      .qa-card .label {
+        display: block;
+        color: var(--sand);
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin: 1.1rem 0 0.3rem;
+      }
+      .qa-card .answer {
+        background: rgba(255, 255, 255, 0.14);
+        border-left: 4px solid var(--sand);
+        border-radius: 0 6px 6px 0;
+        padding: 0.75rem 1rem;
+      }
+      .qa-card .answer p { margin: 0; }
+      .qa-card h5 { color: #fff; font-size: 0.98rem; font-weight: 700; margin: 1rem 0 0.3rem; }
+      .qa-card code {
+        color: #fff;
+        background: rgba(0, 0, 0, 0.25);
+        padding: 0.05rem 0.35rem;
+        border-radius: 3px;
+        font-size: 0.88em;
+      }
+      .qa-card .formula {
+        color: #fff;
+        background: rgba(0, 0, 0, 0.28);
+        font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        margin: 0.5rem 0 0.75rem;
+        white-space: pre;
+        overflow-x: auto;
+      }
+      @media (max-width: 575px) {
+        .qa-card { padding: 1.1rem 1rem; }
+        .qa-card .question { font-size: 1.1rem; }
+      }
+    </style>
+  </head>
+  <body data-aos-easing="slide" data-aos-duration="800" data-aos-delay="0">
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <!-- Filled by js/main.js, which clones the .js-clone-nav menu below -->
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <div id="sticky-wrapper" class="sticky-wrapper"><header class="site-navbar py-4 site-navbar-target" role="banner">
+
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+          <div class="site-logo mr-auto w-25"><img src="images/sigcite26.png" height="80" alt="Academic Tutorials"></div>
+
+          <div class="mx-auto text-center">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
+                <li><a href="index.html#home-section" class="nav-link">Home</a></li>
+                <li><a href="index.html#abstract-section" class="nav-link">Abstract</a></li>
+                <li><a href="index.html#programs-section" class="nav-link">Programs</a></li>
+                <li><a href="index.html#presenters-section" class="nav-link">Presenters</a></li>
+                <li><a href="index.html#slides-section" class="nav-link">Materials</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="ml-auto w-25">
+            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
+          </div>
+        </div>
+      </div>
+
+    </header></div>
+
+    <div class="intro-section" id="home-section">
+
+      <div class="slide-1" style="background-image: url('images/o6.jpg'); background-position: center top;" data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="row align-items-center">
+                <div class="col-lg-10 mb-4">
+                  <h1 data-aos="fade-up" data-aos-delay="100">Hands-on RAG for Education: <br/>From a Generic Chatbot to <br/>a Document-Grounded System</h1>
+                  <p class="subtitle" data-aos="fade-up" data-aos-delay="150">Lab Test Questions and Course Advising Examples</p>
+                  <p class="event mb-4" data-aos="fade-up" data-aos-delay="200">
+                    Tutorial at the 27th ACM Annual Conference on Cybersecurity and Information Technology Education <br/>(ACM SIGCITE 2026), Wilmington, North Carolina, November 12–14, 2026<br>
+                    Tutorial date and time: to be announced
+                  </p>
+                  <div class="conf-logos" data-aos="fade-up" data-aos-delay="250">
+                    <!-- Save both logos into images/. If a local file is missing, the page falls back to the original Google Sites image. -->
+                    <img src="images/sigcite.png" alt="ACM SIGCITE logo">
+                    <img src="images/sigcite26.png" alt="ACM SIGCITE 2026 conference logo">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="site-section slides qa-section" id="questions-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 text-center on-blue" data-aos="fade-up">
+            <h2 class="section-title">Test Questions</h2>
+            <p class="back-link"><a href="index.html#materials-section">Back to tutorial materials</a></p>
+
+            <h3 class="part">Part 1. Testing Set for Lab Practice</h3>
+            <p class="intro">The lab corpus has two documents, the ITM Graduate Student Handbook (<code>ITM_Student_Handbook.pdf</code>, Fall 2025) and the Tuition, Fees, and Costs page (<code>Tuition__Fees__and_Costs.html</code>, 2026–27 estimates). Run each question through all four approaches and score every answer from 0 (fails) to 2 (meets) on retrieval relevance, grounding, citation accuracy, absence of unsupported claims, and correct refusal when the documents do not hold the answer.</p>
+
+            <div class="qa-card" id="q1">
+              <h4><span class="qid">Q1</span>Graduate tuition</h4>
+              <p class="question">What is the tuition rate for a graduate student?</p>
+              <span class="label">Expected answer</span>
+              <div class="answer"><p>For a new graduate student at the Mies Campus, estimated tuition for the 2026–27 academic year is $34,650, based on 18 credit hours per year. Fees are $1,850, and the total estimated cost of attendance is $59,972.</p></div>
+              <span class="label">Source</span>
+              <p><code>Tuition__Fees__and_Costs.html</code>, “New Graduate Student (Mies Campus)” table.</p>
+              <span class="label">Challenges to answer this question</span>
+              <ul>
+                <li>This is the baseline question, and every approach should answer it correctly.</li>
+                <li>The answer sits in a table, so document conversion must keep each number attached to its row label.</li>
+              </ul>
+              <span class="label">Common mistakes in answers</span>
+              <ul>
+                <li>Reporting the undergraduate tuition of $53,198 as graduate tuition.</li>
+                <li>Reporting the total cost of attendance, $59,972, as tuition.</li>
+                <li>Leaving out that the estimate assumes 18 credit hours per year.</li>
+              </ul>
+            </div>
+
+            <div class="qa-card" id="q2">
+              <h4><span class="qid">Q2</span>Tuition for an international student</h4>
+              <p class="question">What is the tuition rate for an international student?</p>
+              <span class="label">Expected answer</span>
+              <div class="answer"><p>The tuition page does not list separate rates for international and domestic students. Its estimates depend on the program level instead. For 2026–27, estimated tuition is $53,198 for a new undergraduate, $34,650 for a new graduate student at the Mies Campus (based on 18 credit hours per year), and $58,435 for a new JD student. The assistant should ask which program the student is in and point to the Student Accounting Office website for detailed rates.</p></div>
+              <span class="label">Source</span>
+              <p><code>Tuition__Fees__and_Costs.html</code>, the three cost-of-attendance tables and the “Components” section.</p>
+              <span class="label">Challenges to answer this question</span>
+              <ul>
+                <li>The page separates tuition by program level (undergraduate, graduate, JD), not by international or domestic status.</li>
+                <li>The question does not say which program level the student is in.</li>
+                <li>A good answer states that the page has no international rate, then lists the rates by level or asks which program applies, instead of giving a single number.</li>
+              </ul>
+              <span class="label">Common mistakes in answers</span>
+              <ul>
+                <li>Inventing an “international student rate.”</li>
+                <li>Giving the graduate or undergraduate figure alone as the international rate.</li>
+                <li>Presenting general costs, such as health insurance, as charges specific to international students.</li>
+              </ul>
+            </div>
+
+            <div class="qa-card" id="q3">
+              <h4><span class="qid">Q3</span>Problems with Canvas</h4>
+              <p class="question">I am having problems with Canvas. Who should I contact, and how?</p>
+              <span class="label">Expected answer</span>
+              <div class="answer"><p>Contact the OTS Support Desk at supportdesk@illinoistech.edu or 312.567.DESK (3375). ITM faculty, teaching assistants, and staff cannot help with Canvas issues.</p></div>
+              <span class="label">Source</span>
+              <p><code>ITM_Student_Handbook.pdf</code>, page 27, “Canvas and Online Courses.”</p>
+              <span class="label">Challenges to answer this question</span>
+              <ul>
+                <li>The email address and phone number must be reproduced exactly as written.</li>
+                <li>The sentence that follows the contact details limits who can help, and a complete answer includes it.</li>
+                <li>The handbook names many contacts for other situations, so passages retrieved from nearby sections can point to the wrong person.</li>
+              </ul>
+              <span class="label">Common mistakes in answers</span>
+              <ul>
+                <li>Telling the student to contact the course instructor or the ITM Program Manager.</li>
+                <li>Altering the email address or phone number. The source gives the number both as 312.567.DESK and as 3375.</li>
+                <li>Leaving out that ITM faculty and staff cannot help with Canvas.</li>
+              </ul>
+            </div>
+
+            <div class="qa-card" id="q4">
+              <h4><span class="qid">Q4</span>Taking two online courses</h4>
+              <p class="question">Can I take two online courses this semester?</p>
+              <span class="label">Expected answer</span>
+              <div class="answer"><p>It depends on visa status. Students on F-1 visas may take only one online course per semester, a U.S. government requirement that cannot be waived, and F-1 students cannot enroll in online sections of any course in their first semester. The handbook states no comparable limit for students who are not on F-1 visas, although students in live sections are still expected to attend class in person.</p></div>
+              <span class="label">Source</span>
+              <p><code>ITM_Student_Handbook.pdf</code>, page 28, “ITM Online Course Policies.”</p>
+              <span class="label">Challenges to answer this question</span>
+              <ul>
+                <li>The correct answer depends on the student's visa status, which the question does not give.</li>
+                <li>Without a student profile, a good answer separates the cases or asks about visa status. With the profile “I am an F-1 international student in my first semester,” the answer becomes that the student cannot take any online course this semester.</li>
+                <li>The source spells F-1 as “Fl Visa,” with a lowercase letter l. A keyword search for “F-1” may miss the passage, while dense retrieval can still find it.</li>
+              </ul>
+              <span class="label">Common mistakes in answers</span>
+              <ul>
+                <li>Answering yes or no without stating the condition on visa status.</li>
+                <li>Missing the rule that first-semester F-1 students cannot take online courses at all.</li>
+              </ul>
+            </div>
+
+            <h3 class="part">Part 2. Example Questions in a More Complicated Task</h3>
+            <p class="intro">Course recommendation goes beyond document question answering. The two questions below draw on the PhD in Information Technology catalog page (<code>PhD_in_IT.html</code>), the ITM course descriptions (<code>ITM_Course_List.pdf</code>), and the handbook's term planning list. Retrieval supplies the rules, but an answer also needs filtering, reasoning, and the student's own record.</p>
+
+            <div class="qa-card" id="c1">
+              <h4><span class="qid">C1</span>Finishing the PhD core requirement</h4>
+              <p class="question long">I am starting the ITM PhD with a Master of Information Technology and Management from Illinois Tech. In my master's I completed ITMD 514 (A), ITMD 522 (A), ITMO 540 (B), ITMO 556 (B), and ITMS 548 (C). Which courses could I take this spring to finish my core requirement?</p>
+              <span class="label">Challenges to answer this question</span>
+              <h5>Rules to apply</h5>
+              <ul>
+                <li>Students entering with a master's in IT must take at least three courses from three different core groups.</li>
+                <li>A course meets a core requirement only if it was taken at Illinois Tech and passed with B or better.</li>
+                <li>Each course has its own prerequisites, some with a minimum grade.</li>
+                <li>Some courses are normally offered only in the fall.</li>
+              </ul>
+              <h5>Filtering</h5>
+              <ul>
+                <li>Remove core groups already met. ITMD 522 meets Group 5. ITMS 548 is in Group 4 but has a C, so Group 4 is still open.</li>
+                <li>Remove courses whose prerequisites the student has not completed, such as the Group 1 courses that require ITMD 510.</li>
+                <li>Remove courses that are normally fall-only, such as ITMO 544 and ITMS 528.</li>
+              </ul>
+              <h5>Reasoning</h5>
+              <ul>
+                <li>The student still needs two more courses, and they must come from two different groups among Groups 1, 2, 3, 4, and 6.</li>
+                <li>The eligible set is a set operation over courses, prerequisites, terms, and the student's record.</li>
+              </ul>
+              <div class="formula">Eligible = ( ∪ Courses(g) for g not in {5} )
+         ∩ { c : prerequisites of c are met }
+         ∩ Offered(spring)
+         − Completed with B or better</div>
+              <ul>
+                <li>The final step picks two eligible courses whose groups differ.</li>
+              </ul>
+              <h5>Why retrieval alone falls short</h5>
+              <ul>
+                <li>The group membership of 36 courses comes from one table, the prerequisites are spread across dozens of chunks in another document, and the term information sits in a third.</li>
+                <li>Two different grade thresholds apply, B or better for core credit and minimum grades for some prerequisites.</li>
+                <li>The source data contains errors. ITMO 541 lists “ITMD 556” as a prerequisite, which is most likely a typo for ITMO 556, and a rule engine that copies it would wrongly exclude the course.</li>
+              </ul>
+            </div>
+
+            <div class="qa-card" id="c2">
+              <h4><span class="qid">C2</span>Transfer credit and remaining requirements</h4>
+              <p class="question long">I have an MBA from another university (36 graduate credits, all with grades of B or better). As a non-degree student at Illinois Tech, I also completed 9 credits of 400-level ITM courses. If I join the ITM PhD, how many credits can I transfer, how many more must I complete, and can any of these courses satisfy core requirements?</p>
+              <span class="label">Challenges to answer this question</span>
+              <h5>Rules to apply</h5>
+              <ul>
+                <li>The catalog defines three entry tracks with different numbers. For a master's degree outside IT or computing, the degree needs at least 72 credits, allows at most 23 transfer credits, and requires 49 credits at the 500, 600, or 700 level.</li>
+                <li>400-level ITM courses taken at Illinois Tech cannot be applied to the degree.</li>
+                <li>Core courses must be taken at Illinois Tech, so transfer courses cannot meet core requirements.</li>
+                <li>This track requires one course from each of Groups 1, 2, and 3, two courses from two of Groups 4, 5, and 6, and three sequential semesters of ITM 695.</li>
+              </ul>
+              <h5>Filtering</h5>
+              <ul>
+                <li>Identify the correct track among the three, since an MBA is a master's outside IT.</li>
+                <li>Exclude the 9 credits of 400-level Illinois Tech ITM courses from transfer.</li>
+                <li>Exclude all MBA courses from core credit.</li>
+              </ul>
+              <h5>Reasoning</h5>
+              <div class="formula">Transfer   = min(23, 36) = 23 credits
+Remaining ≥ 72 − 23 = 49 credits, all at the 500 level or above
+Core       = choose courses covering Groups {1, 2, 3}
+             and at least two of Groups {4, 5, 6}</div>
+              <ul>
+                <li>The total may exceed 72 credits, because the adviser can require prerequisite courses and undergraduate-level prerequisites do not count toward the degree.</li>
+              </ul>
+              <h5>Why retrieval alone falls short</h5>
+              <ul>
+                <li>The rules are spread across three requirement tables, numbered footnotes, and a separate notes section, and missing any one of them produces a wrong number.</li>
+                <li>The answer needs arithmetic and a set-coverage condition, not a passage to quote.</li>
+                <li>The source is inconsistent with itself. The table lists the research course as ITM 691, while a footnote calls it ITMT 691.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <footer class="footer-section bg-white">
+      <div class="container">
+    <div class="row text-center">
+          <div class="col-md-12">
+            <div class="pt-3">
+              <p style="color: #000;">
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        Copyright &copy;2019 - <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>. Web traffic by <a href="https://analytics.google.com" target="_blank">Google Analytics</a>.
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div> <!-- .site-wrap -->
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/bootstrap-datepicker.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.fancybox.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
+
+  <script src="js/main.js"></script>
+
+  <script>
+    // The template's main.js scrolls in-page for menu clicks. Links on this page go to index.html,
+    // so let the browser follow them normally instead of the in-page scroll handler.
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest ? e.target.closest('a') : null;
+      if (a && (a.getAttribute('href') || '').indexOf('index.html') === 0) { e.stopPropagation(); }
+    }, true);
+  </script>
+
+  <script>
+    // Keep #sticky-wrapper as tall as the fixed navbar so the content below is not covered.
+    // No scroll listener, so the menu does not flicker.
+    (function () {
+      var nav = document.querySelector('#sticky-wrapper .site-navbar');
+      var wrap = document.getElementById('sticky-wrapper');
+      if (!nav || !wrap) return;
+      function sizeSpacer() { wrap.style.height = nav.offsetHeight + 'px'; }
+      sizeSpacer();
+      window.addEventListener('load', sizeSpacer);
+      window.addEventListener('resize', sizeSpacer);
+      if (window.ResizeObserver) { new ResizeObserver(sizeSpacer).observe(nav); }
+    })();
+  </script>
+
+</body>
+</html>

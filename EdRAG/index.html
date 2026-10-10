@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MR7NHGQNZH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MR7NHGQNZH');
+</script>
+
+    <title>Hands-on RAG for Education | ACM SIGCITE 2026 Tutorial</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Hands-on RAG for Education: From a Generic Chatbot to a Document-Grounded System. A tutorial at ACM SIGCITE 2026, University of North Carolina Wilmington.">
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+      /* Sky-blue theme for SIGCITE 2026 at UNCW. These rules override css/style.css. */
+      :root {
+        --sky: #1479b8;        /* main section color, white text stays readable */
+        --sky-deep: #e88a42;   /* navbar and alternating sections */
+        --sky-dark: #0a4a74;   /* hero tint */
+        --sky-pale: #eaf5fc;   /* light section background */
+        --sand: #ffd27a;       /* links on blue backgrounds */
+      }
+
+      /* Top menu: fixed with plain CSS (no jquery.sticky.js), so it does not flicker */
+      #sticky-wrapper { background: transparent; }
+      #sticky-wrapper .site-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: auto;
+        z-index: 1000;
+        background: var(--sky-deep);
+      }
+
+      .intro-section .slide-1 {
+        background-color: var(--sky-dark);
+        background-blend-mode: multiply;
+      }
+      .intro-section h1 { line-height: 1.15; }
+      .intro-section .subtitle {
+        color: #fff;
+        font-size: 1.6rem;
+        font-weight: 300;
+        margin-bottom: 1.25rem;
+      }
+      .intro-section .event, .intro-section .event a { color: #fff; }
+      .intro-section .event a { text-decoration: underline; }
+      .conf-logos { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 0.5rem; }
+      .conf-logos img {
+        height: 99px;
+        width: auto;
+        max-width: 100%;
+        background: #fff;
+        padding: 8px 12px;
+        border-radius: 6px;
+      }
+
+      .site-section.courses-title { background: var(--sky) !important; }
+      .site-section.programs{ background: #bf2458 !important; }
+      .site-section.presenters { background: var(--sky) !important; }
+      .site-section.slides { background: #822dd6 !important; }
+
+      .on-blue, .on-blue p, .on-blue li, .on-blue h4 { color: #fff; }
+      .on-blue a { color: var(--sand); text-decoration: underline; }
+      .on-blue a:hover, .on-blue a:focus { color: #fff; }
+      .on-blue ul { text-align: left; padding-left: 1.25rem; }
+      .on-blue li { margin-bottom: 0.35rem; }
+      .module-time { font-weight: 400; opacity: 0.85; }
+      .note { opacity: 0.85; font-style: italic; }
+
+      .presenters .teacher h3 a { color: var(--sky-deep); }
+      .presenters .teacher p { color: #fff; }
+	  .presenters .teacher {
+		  border: 2px solid #1479b8;   /* 边框颜色和粗细，这里用的是页面的主色天蓝 */
+		  border-radius: 8px;
+		  padding: 2rem 1.5rem;        /* 内边距加大，框会显得更宽松 */
+		  background: #606060;
+		}
+	  .presenters .teacher { max-width: 360px; margin: 0 auto; }
+	  
+	  
+	.footer-section { padding: 1.5rem 0 !important; }
+	.site-section.slides { padding-bottom: 3rem !important; }
+	.footer-section { background: #404040 !important; }
+	.footer-section,
+.footer-section p,
+.footer-section a,
+.footer-section i {
+  color: #fff !important;
+}
+.footer-section {
+  border-top: none !important;
+  margin-top: 0 !important;
+}
+.site-section.slides { margin-bottom: 0 !important; }
+
+
+#sticky-wrapper .site-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  z-index: 1000;
+  background: #e67b3e;   /* 改这里 */
+}
+    </style>
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-aos-easing="slide" data-aos-duration="800" data-aos-delay="0">
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <!-- Filled by js/main.js, which clones the .js-clone-nav menu below -->
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <div id="sticky-wrapper" class="sticky-wrapper"><header class="site-navbar py-4 site-navbar-target" role="banner">
+
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+          <div class="site-logo mr-auto w-25"><img src="images/sigcite26.png" height="80" alt="Academic Tutorials"></div>
+
+          <div class="mx-auto text-center">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
+                <li><a href="#home-section" class="nav-link">Home</a></li>
+                <li><a href="#abstract-section" class="nav-link">Abstract</a></li>
+                <li><a href="#programs-section" class="nav-link">Programs</a></li>
+                <li><a href="#presenters-section" class="nav-link">Presenters</a></li>
+                <li><a href="#materials-section" class="nav-link">Materials</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="ml-auto w-25">
+            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
+          </div>
+        </div>
+      </div>
+
+    </header></div>
+
+    <div class="intro-section" id="home-section">
+
+      <div class="slide-1" style="background-image: url('images/o6.jpg'); background-position: center top;" data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="row align-items-center">
+                <div class="col-lg-10 mb-4">
+                  <h1 data-aos="fade-up" data-aos-delay="100">Hands-on RAG for Education: <br/>From a Generic Chatbot to <br/>a Document-Grounded System</h1>
+                  <p class="subtitle" data-aos="fade-up" data-aos-delay="150"></p>
+                  <p class="event mb-4" data-aos="fade-up" data-aos-delay="200">
+                    Tutorial at the 27th ACM Annual Conference on Cybersecurity and Information Technology Education <br/>(ACM SIGCITE 2026), Wilmington, North Carolina, November 12–14, 2026<br>
+                    Tutorial date and time: to be announced
+                  </p>
+                  <div class="conf-logos" data-aos="fade-up" data-aos-delay="250">
+                    <!-- Save both logos into images/. If a local file is missing, the page falls back to the original Google Sites image. -->
+                    <img src="images/sigcite.png" alt="ACM SIGCITE logo">
+                    <img src="images/sigcite26.png" alt="ACM SIGCITE 2026 conference logo">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="site-section courses-title" id="abstract-section">
+      <div class="container">
+        <div class="row mb-15 justify-content-center">
+          <div class="col-lg-9 text-center on-blue" data-aos="fade-up">
+            <h2 class="section-title">Abstract</h2>
+            <p class="text-left">General-purpose chatbots can give misleading answers to advising questions when they lack an institution's current policies and catalog. This tutorial introduces computing educators to Retrieval-Augmented Generation (RAG) as a way to ground responses in institutional documents. Participants compare four RAG approaches, from no-code platforms to a custom implementation, using the same documents, test set, and scoring rubric. They then build an advising assistant from university webpages and PDFs, working through document conversion, chunking, retrieval, and answer generation. The exercises focus on citations and declining to answer when sources provide insufficient evidence. The final module considers why course recommendations require more than policy retrieval and discusses safeguards for responsible use.</p>
+
+            <p class="text-left mt-4">By the end of the tutorial, participants will be able to</p>
+            <ul>
+              <li>explain how RAG grounds answers and why grounding matters for advising,</li>
+              <li>compare four ways to build a RAG assistant in terms of effort, control, and data exposure,</li>
+              <li>build an advising assistant from institutional HTML and PDF documents and evaluate it with a test set and rubric, and</li>
+              <li>explain what course recommendation requires beyond document question answering and which safeguards responsible deployment needs.</li>
+            </ul>
+            <p class="text-left">No prior experience with LLMs or embeddings is required. Basic Python is helpful. Please bring a laptop with a current web browser.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="site-section programs" id="programs-section">
+      <div class="container">
+        <div class="row mb-5 justify-content-center">
+          <div class="col-lg-10 text-center on-blue" data-aos="fade-up">
+            <h2 class="section-title">Programs</h2>
+            <p class="text-left">Time: to be announced (90 minutes)<br>
+            Location: University of North Carolina Wilmington, Wilmington, NC</p>
+
+            <h4 class="text-left mt-4">Opening <span class="module-time">(5 min)</span></h4>
+            <ul>
+              <li>Logging in to the tutorial JupyterHub and checking the environment</li>
+            </ul>
+
+            <h4 class="text-left mt-4">Module 1. Four Ways to Build RAG <span class="module-time">(30 min)</span></h4>
+            <ul>
+              <li>Why a generic chatbot invents answers to advising questions</li>
+              <li>Consumer platforms (NotebookLM)</li>
+              <li>Managed RAG APIs (Gemini File Search)</li>
+              <li>Self-hosted open-source applications (AnythingLLM)</li>
+              <li>Trading convenience for control over retrieval and data</li>
+            </ul>
+
+            <h4 class="text-left mt-4">Module 2. Building an Advising Assistant from Scratch <span class="module-time">(40 min)</span></h4>
+            <ul>
+              <li>Converting HTML and PDF documents to Markdown</li>
+              <li>Fixed-length versus heading-based chunking</li>
+              <li>Embedding and retrieval with a small open model</li>
+              <li>Grounded generation with citations and refusal</li>
+              <li>Scoring the test set and comparing the four approaches</li>
+              <li>Optional: hybrid BM25 retrieval, a vector database, and student profiles</li>
+            </ul>
+
+            <h4 class="text-left mt-4">Module 3. Optional: Course Advising as a More Complicated Task<span class="module-time">(15 min)</span></h4>
+            <ul>
+              <li>Why course recommendation needs more than retrieval</li>
+              <li>A hybrid design with a structured catalog, rule-based checks, RAG, and a recommender</li>
+              <li>Safeguards for responsible deployment</li>
+              <li>Q&amp;A</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section presenters" id="presenters-section">
+      <div class="container">
+
+        <div class="row mb-5 justify-content-center">
+          <div class="col-lg-7 mb-5 text-center" data-aos="fade-up">
+            <h2 class="section-title">Presenters</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-9 text-center on-blue" data-aos="fade-up">
+            <div class="teacher text-center">
+              <img src="images/yz-pic.png" alt="Yong Zheng" class="img-fluid rounded-circle mx-auto mb-3 d-block" style="width: 160px; height: 160px; object-fit: cover;">
+              <div class="py-2">
+                <h3 class="text-black"><a href="https://itm.iit.edu/zheng/" target="_blank" rel="noopener">Dr. Yong Zheng</a></h3>
+                <p>Associate Professor<br>School of Computing, <br>Illinois Institute of Technology, <br>Chicago, IL, USA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section slides" id="materials-section">
+      <div class="container">
+
+        <div class="row mb-5 justify-content-center">
+          <div class="col-lg-9 mb-5 text-center on-blue" data-aos="fade-up">
+            <h2 class="section-title">Materials</h2>
+            <ul>
+              <li>Lab Resources</li>
+            <ul>
+              <li>Notebook (JupyterHub and Google Colab versions): <span class="note">coming soon</span></li>
+              <li>Documents/Texts Input: </li>
+            <ul>
+			<li>The task of policy answering: Tuition Rate Webpage (<a href="resources\materials\Tuition_Fees.html" target="_blank" rel="noopener">HTML</a>), Student handbook (<a href="resources\materials\ITM_Student_Handbook.pdf" target="_blank" rel="noopener">PDF</a>)</li		
+			<li>The task of course advising: Program Requirement Webpage (<a href="resources\materials\PhD_in_IT.html" target="_blank" rel="noopener">HTML</a>), Course Information (<a href="resources\materials\ITM_Course_List.pdf" target="_blank" rel="noopener">PDF</a>)</li>
+			</ul>
+			
+              <li>Tesing set: <a href="edrag-test-questions.html#questions-section" target="_blank" rel="noopener">Click here</a></li>
+            </ul>
+              <li>Slides: <span class="note">coming soon</span></li>
+              <li>Reference: Yong Zheng (2026). <a href="https://doi.org/10.1145/3857770.3858323" target="_blank" rel="noopener">Hands-on RAG for Education: From a Generic Chatbot to a Document-Grounded System</a>. In Proceedings of the 27th ACM Annual Conference on Cybersecurity and Information Technology Education (ACM SIGCITE '26). ACM. DOI: 10.1145/3857770.3858323</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <footer class="footer-section bg-white">
+      <div class="container">
+    <div class="row text-center">
+          <div class="col-md-12">
+            <div class="pt-3">
+              <p style="color: #000;">
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        Copyright &copy;2019 - <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>. Web traffic by <a href="https://analytics.google.com" target="_blank">Google Analytics</a>.
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div> <!-- .site-wrap -->
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/bootstrap-datepicker.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.fancybox.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
+
+  <script src="js/main.js"></script>
+
+  <script>
+    // Keep #sticky-wrapper as tall as the fixed navbar so the content below is not covered.
+    // No scroll listener, so the menu does not flicker.
+    (function () {
+      var nav = document.querySelector('#sticky-wrapper .site-navbar');
+      var wrap = document.getElementById('sticky-wrapper');
+      if (!nav || !wrap) return;
+      function sizeSpacer() { wrap.style.height = nav.offsetHeight + 'px'; }
+      sizeSpacer();
+      window.addEventListener('load', sizeSpacer);
+      window.addEventListener('resize', sizeSpacer);
+      if (window.ResizeObserver) { new ResizeObserver(sizeSpacer).observe(nav); }
+    })();
+  </script>
+
+</body>
+</html>
