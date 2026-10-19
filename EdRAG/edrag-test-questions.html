@@ -190,7 +190,23 @@
         white-space: pre;
         overflow-x: auto;
       }
+      .rubric { text-align: left; margin: 1.25rem 0 0; }
+      .rubric h4 { color: #fff; font-size: 1.15rem; font-weight: 700; margin: 0 0 0.6rem; }
+      .rubric .table-wrap { overflow-x: auto; }
+      .rubric table { width: 100%; border-collapse: collapse; color: #fff; font-size: 0.98rem; }
+      .rubric th, .rubric td {
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        padding: 0.55rem 0.75rem;
+        vertical-align: top;
+        text-align: left;
+      }
+      .rubric th { background: rgba(0, 0, 0, 0.22); font-weight: 700; }
+      .rubric td:first-child { font-weight: 700; white-space: nowrap; }
+      .rubric .scale { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0.9rem 0 0.3rem; padding: 0; list-style: none; }
+      .rubric .scale li { margin: 0; }
+      .rubric .scale strong { color: var(--sand); margin-right: 0.35rem; }
       @media (max-width: 575px) {
+        .rubric td:first-child { white-space: normal; }
         .qa-card { padding: 1.1rem 1rem; }
         .qa-card .question { font-size: 1.1rem; }
       }
@@ -272,7 +288,32 @@
             <p class="back-link"><a href="index.html#materials-section">Back to tutorial materials</a></p>
 
             <h3 class="part">Part 1. Testing Set for Lab Practice</h3>
-            <p class="intro">The lab corpus has two documents, the ITM Graduate Student Handbook (<code>ITM_Student_Handbook.pdf</code>, Fall 2025) and the Tuition, Fees, and Costs page (<code>Tuition__Fees__and_Costs.html</code>, 2026–27 estimates). Run each question through all four approaches and score every answer from 0 (fails) to 2 (meets) on retrieval relevance, grounding, citation accuracy, absence of unsupported claims, and correct refusal when the documents do not hold the answer.</p>
+            <p class="intro">The lab corpus has two documents, the ITM Graduate Student Handbook (<code>ITM_Student_Handbook.pdf</code>, Fall 2025) and the Tuition, Fees, and Costs page (<code>Tuition__Fees__and_Costs.html</code>, 2026–27 estimates). Run each question through all four approaches and score every answer with the rubric below. Q1–Q4 have answers in the documents; Q5 does not, and tests whether an approach says so instead of guessing.</p>
+
+            <div class="rubric" id="rubric">
+              <h4>Scoring rubric</h4>
+              <p>Score every answer on each of the five criteria:</p>
+              <ul class="scale">
+                <li><strong>0</strong>completely incorrect</li>
+                <li><strong>1</strong>partially correct</li>
+                <li><strong>2</strong>completely correct</li>
+              </ul>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr><th scope="col">Criterion</th><th scope="col">What to check</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Retrieval relevance</td><td>The retrieved passages are the ones that hold the answer (for Q5, the closest related passages). If a tool does not show what it retrieved, judge from its citations.</td></tr>
+                    <tr><td>Grounding</td><td>Every statement in the answer is supported by the retrieved passages.</td></tr>
+                    <tr><td>Citation accuracy</td><td>The cited document and page point to the passage the answer actually uses.</td></tr>
+                    <tr><td>Absence of unsupported claims</td><td>The answer adds no facts, numbers, or advice that the documents do not contain.</td></tr>
+                    <tr><td>Correct refusal</td><td>When the documents do not hold the answer, or hold only part of it, the answer says so instead of guessing. When they do hold it, the answer gives it rather than refusing.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Each answer can earn up to 10 points, so the five questions give a maximum of 50 points per approach. Compare your scores with the expected answers below.</p>
+            </div>
 
             <div class="qa-card" id="q1">
               <h4><span class="qid">Q1</span>Graduate tuition</h4>
@@ -353,6 +394,27 @@
               <ul>
                 <li>Answering yes or no without stating the condition on visa status.</li>
                 <li>Missing the rule that first-semester F-1 students cannot take online courses at all.</li>
+              </ul>
+            </div>
+
+            <div class="qa-card" id="q5">
+              <h4><span class="qid">Q5</span>Office number and office hours</h4>
+              <p class="question">May I know Prof. Yong Zheng's office number and office hours?</p>
+              <span class="label">Expected answer</span>
+              <div class="answer"><p>Neither document gives Prof. Yong Zheng's office room number or office hours, so the assistant should say so instead of guessing. It may add what the handbook does contain: Prof. Zheng is the secondary adviser for Applied Data Science and AI and can be reached at yzheng66@illinoistech.edu or 312.567.3575, and full-time faculty post their office hours on their course websites or in Canvas.</p></div>
+              <span class="label">Source</span>
+              <p><code>ITM_Student_Handbook.pdf</code>, page 6, “Faculty Office Hours,” and page 15, “Advising and Registration.” The documents do not answer the question itself.</p>
+              <span class="label">Challenges to answer this question</span>
+              <ul>
+                <li>The answer is not in the documents, so this question tests correct refusal.</li>
+                <li>Retrieval still finds related passages, such as the adviser list with Prof. Zheng's email and phone number, and a policy that lets adjunct faculty hold office hours on the 15th floor of the Michael Paul Galvin Tower. A model can stretch these into an answer.</li>
+                <li>“Office number” can mean a room number or an office phone number. An answer that reads it as a phone number and gives 312.567.3575 is grounded, but it still needs to say that the office hours are not in the documents.</li>
+              </ul>
+              <span class="label">Common mistakes in answers</span>
+              <ul>
+                <li>Inventing a building, room number, or office hours.</li>
+                <li>Giving the 15th floor of the Michael Paul Galvin Tower as Prof. Zheng's office. The handbook names that floor as a place where adjunct faculty may hold office hours.</li>
+                <li>Saying only that the information is unavailable, without the contact details the handbook does provide. This is a minor issue.</li>
               </ul>
             </div>
 
