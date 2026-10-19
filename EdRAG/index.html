@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+	  .on-blue .item-label { font-weight: 900; font-size: 1.08em; color: #fff; }
       /* Sky-blue theme for SIGCITE 2026 at UNCW. These rules override css/style.css. */
       :root {
         --sky: #1479b8;        /* main section color, white text stays readable */
@@ -291,24 +292,38 @@
       <div class="container">
 
         <div class="row mb-5 justify-content-center">
-          <div class="col-lg-9 mb-5 text-center on-blue" data-aos="fade-up">
+          <div class="col-lg-12 mb-5 text-center on-blue" data-aos="fade-up">
             <h2 class="section-title">Materials</h2>
             <ul>
               <li>Lab resources
                 <ul>
-                  <li>Notebooks: run the lab version on the tutorial JupyterHub during the session, and the Colab version after the tutorial.
+                  <li><span class="item-label">Notebooks:</span> run the lab version on the tutorial JupyterHub during the session, and the Colab version after the tutorial.
                     <ul>
-                      <li>Notebook 1, three ready-made ways to build a RAG assistant: lab version (<a href="resources/materials/practice_lab/01_ready_made_rag.ipynb" download>01_ready_made_rag.ipynb</a>), Colab version <a href="https://colab.research.google.com/github/academictutorials/academictutorials.github.io/blob/main/EdRAG/resources/materials/practice_offline/01_ready_made_rag_colab.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="vertical-align: middle;"></a></li>
-                      <li>Notebook 2, build a RAG assistant from scratch: lab version (<a href="resources/materials/practice_lab/02_rag_from_scratch.ipynb" download>02_rag_from_scratch.ipynb</a>), Colab version <a href="https://colab.research.google.com/github/academictutorials/academictutorials.github.io/blob/main/EdRAG/resources/materials/practice_offline/02_rag_from_scratch_colab.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="vertical-align: middle;"></a></li>
+                      <li>Notebook 1, three ready-made ways to build a RAG assistant: 
+						<ul>
+							<li>Lab version (<a href="resources/materials/practice_lab/01_ready_made_rag.ipynb" download>01_ready_made_rag.ipynb</a>)
+							</li>
+							<li>Colab version <a href="https://colab.research.google.com/github/academictutorials/academictutorials.github.io/blob/main/EdRAG/resources/materials/practice_offline/01_ready_made_rag_colab.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="vertical-align: middle;"></a>
+							</li>
+						</ul>
+					  </li>
+                      <li>Notebook 2, build a RAG assistant from scratch:
+						<ul>
+							<li>Lab version (<a href="resources/materials/practice_lab/02_rag_from_scratch.ipynb" download>02_rag_from_scratch.ipynb</a>)
+							</li>
+							<li>Colab version <a href="https://colab.research.google.com/github/academictutorials/academictutorials.github.io/blob/main/EdRAG/resources/materials/practice_offline/02_rag_from_scratch_colab.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="vertical-align: middle;"></a>
+							</li>
+						</ul>
+					  </li>
                     </ul>
                   </li>
-                  <li>Documents
+                  <li><span class="item-label">Documents</span>
                     <ul>
                       <li>Policy question answering: Tuition, Fees, and Costs page (<a href="resources/materials/Tuition_Fees.html" target="_blank" rel="noopener">HTML</a>), ITM Graduate Student Handbook (<a href="resources/materials/ITM_Student_Handbook.pdf" target="_blank" rel="noopener">PDF</a>)</li>
                       <li>Course advising: PhD in Information Technology catalog page (<a href="resources/materials/PhD_in_IT.html" target="_blank" rel="noopener">HTML</a>), ITM course descriptions (<a href="resources/materials/ITM_Course_List.pdf" target="_blank" rel="noopener">PDF</a>)</li>
                     </ul>
                   </li>
-                  <li>Test questions, expected answers, and scoring rubric: <a href="edrag-test-questions.html#questions-section" target="_blank" rel="noopener">edrag-test-questions.html</a></li>
+                  <li><span class="item-label">Testing:</span> testing questions, expected answers, and scoring rubric, see <a href="edrag-test-questions.html#questions-section" target="_blank" rel="noopener">edrag-test-questions.html</a></li>
                 </ul>
               </li>
               <li>Slides: <span class="note">coming soon</span></li>
