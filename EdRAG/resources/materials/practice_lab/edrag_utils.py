@@ -6,6 +6,7 @@ and charts. You are welcome to read it, but you do not need to change it.
 
 Both notebooks use this file, on the tutorial JupyterHub and on Google Colab.
 """
+import hashlib
 import json
 import os
 import pathlib
@@ -314,6 +315,13 @@ QUERY_PREFIX = "Represent this sentence for searching relevant passages: "   # b
 
 
 _local_model = None
+_precomputed = None
+PRECOMPUTED_FILE = "embeddings_cache.npz"    # vectors computed on the tutorial server, for Colab
+
+
+def _text_key(text):
+    """A short fingerprint of a text, used to look up its precomputed vector."""
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()[:24]
 
 
 def _local_embedder():
@@ -330,6 +338,48 @@ def _local_embedder():
     return _local_model
 
 
+def _precomputed_vectors():
+    """Load (once) the vectors computed on the tutorial server: {fingerprint: (vector, token count)}.
+
+    The file is downloaded from the tutorial website. If it cannot be loaded, everything is computed locally.
+    """
+    global _precomputed
+    if _precomputed is None:
+        _precomputed = {}
+        try:
+            path = DATA / PRECOMPUTED_FILE
+            if not path.exists():
+                DATA.mkdir(exist_ok=True)
+                urllib.request.urlretrieve(MATERIALS_URL + "practice_offline/" + PRECOMPUTED_FILE, path)
+            z = np.load(path)
+            _precomputed = {k: (v.astype(np.float32), int(n))
+                            for k, v, n in zip(z["keys"].tolist(), z["vectors"], z["tokens"])}
+        except Exception as exc:
+            print("No precomputed vectors; every text will be embedded on this machine.", exc)
+    return _precomputed
+
+
+def _embed_local(texts):
+    """Embed texts on this machine, reusing precomputed vectors where the text is exactly the same."""
+    known = _precomputed_vectors()
+    found = [known.get(_text_key(t)) for t in texts]
+    missing = [i for i, f in enumerate(found) if f is None]
+    vectors = np.zeros((len(texts), 384), dtype=np.float32)
+    tokens = [0] * len(texts)
+    for i, f in enumerate(found):
+        if f is not None:
+            vectors[i], tokens[i] = f
+    if missing:                                                  # only texts we have not seen before
+        model = _local_embedder()
+        new = model.encode([texts[i] for i in missing], batch_size=64, normalize_embeddings=True,
+                           show_progress_bar=len(missing) > 100)
+        for j, i in enumerate(missing):
+            vectors[i] = new[j]
+            tokens[i] = len(model.tokenizer(texts[i])["input_ids"])   # counted before any cut-off
+    return vectors, {"tokens": tokens, "truncated": sum(n > 512 for n in tokens),
+                     "cached": len(texts) - len(missing)}
+
+
 def embed(texts, is_query=False):
     """Turn texts into vectors with the bge-small-en-v1.5 model.
 
@@ -337,18 +387,16 @@ def embed(texts, is_query=False):
     is_query: True for questions; adds bge's query prefix to each text
 
     On the tutorial JupyterHub the model runs on the tutorial gateway, which also caches vectors.
-    On Colab the same model runs on the Colab machine itself.
+    On Colab, vectors computed on the tutorial server are downloaded and reused; any other text is
+    embedded with the same model on the Colab machine.
 
     Returns (vectors, info). vectors is a numpy array with one row of 384 numbers per text, each row
     scaled to length 1. info has the token count of each text, how many were longer than the model's
-    512-token limit (and so cut off), and how many vectors came from the gateway's cache.
+    512-token limit (and so cut off), and how many vectors were reused instead of computed.
     """
     texts = [QUERY_PREFIX + t if is_query else t for t in texts]
-    if not ON_HUB:                                               # Colab or another Jupyter: run locally
-        model = _local_embedder()
-        V = model.encode(texts, batch_size=64, normalize_embeddings=True, show_progress_bar=len(texts) > 100)
-        tokens = [len(model.tokenizer(t)["input_ids"]) for t in texts]   # counted before any cut-off
-        return V.astype(np.float32), {"tokens": tokens, "truncated": sum(n > 512 for n in tokens), "cached": 0}
+    if not ON_HUB:                                               # Colab or another Jupyter
+        return _embed_local(texts)
     import httpx
     vectors, info = [], {"tokens": [], "truncated": 0, "cached": 0}
     for i in range(0, len(texts), 128):                          # send at most 128 texts per request
@@ -362,6 +410,21 @@ def embed(texts, is_query=False):
         info["cached"] += d["edrag"]["cache_hits"]
     V = np.array(vectors, dtype=np.float32)
     return V / np.linalg.norm(V, axis=1, keepdims=True), info
+
+
+def export_vectors(presets, questions, path=PRECOMPUTED_FILE):
+    """Instructor tool: save the vectors of every chunk and question, for the Colab version.
+
+    Run on the tutorial JupyterHub after step 3 of Notebook 2, then put the file on the tutorial
+    website under practice_offline/. presets: the PRESETS dict; questions: question texts (the query
+    prefix is added here). Vectors are stored as 16-bit numbers to keep the file small.
+    """
+    texts = sorted({c["text"] for chunks in presets.values() for c in chunks}
+                   | {QUERY_PREFIX + q for q in questions})
+    V, info = embed(texts)
+    np.savez_compressed(path, keys=np.array([_text_key(t) for t in texts]),
+                        vectors=V.astype(np.float16), tokens=np.array(info["tokens"]))
+    print(f"Saved {len(texts)} vectors to {path} ({pathlib.Path(path).stat().st_size / 1e6:.2f} MB)")
 
 
 def check_step3(similarity, index, presets, search):

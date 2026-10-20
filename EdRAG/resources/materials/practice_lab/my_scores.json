@@ -1,0 +1,39 @@
+{
+  "overall": {
+    "notebooklm": {
+      "Q1": 2,
+      "Q2": 1,
+      "Q3": 2,
+      "Q4": 2,
+      "Q5": 2
+    },
+    "file_search": {
+      "Q1": 2,
+      "Q2": 1,
+      "Q3": 2,
+      "Q4": 2,
+      "Q5": 2
+    },
+    "anythingllm": {
+      "Q1": 0,
+      "Q2": 0,
+      "Q3": 2,
+      "Q4": 1,
+      "Q5": 2
+    },
+    "from_scratch": {
+      "Q1": 1,
+      "Q2": 2,
+      "Q3": 2,
+      "Q4": 2,
+      "Q5": 2
+    }
+  },
+  "detailed": {},
+  "guesses": {
+    "step1": "An empty cell",
+    "step2": "Yes",
+    "step3": "Yes",
+    "step4": "Yes"
+  }
+}
