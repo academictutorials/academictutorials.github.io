@@ -365,11 +365,14 @@ def check_step4(answer):
     return a and b
 
 
-def quick_facts_check(answer, prompts):
-    """Run Q1-Q5 with each prompt and check every answer for its key facts. Prints a table of ticks.
+def quick_facts_check(answer, prompts, runs=1):
+    """Ask Q1-Q5 with each prompt and check every answer for its key facts. Shows a table.
 
     answer:  the notebook's answer() function (called with quiet=True, so answers are not printed)
     prompts: a dict that maps a short name to a prompt template
+    runs:    how many times to ask each question with each prompt. The model's answers vary from run
+             to run even at temperature 0, so one run can mislead; with runs > 1 each cell shows how
+             many runs passed, for example "3/3" or "2/3".
 
     The checks are rough string tests of the expected answers (see the test questions page):
       Q1 names $34,650; Q2 names all three tuition figures; Q3 gives the right email and phone;
@@ -385,9 +388,12 @@ def quick_facts_check(answer, prompts):
         "Q4": lambda t: bool(re.search(r"\bone\b.{0,30}online course", t, re.I)) and "first semester" in t.lower(),
         "Q5": lambda t: bool(re.search(refused, t, re.I)) and not re.search(room, t, re.I),
     }
-    table = {name: {q: "✓" if checks[q](answer(QUESTIONS[q], prompt=prompt, quiet=True)) else "✗"
-                    for q in QUESTIONS} for name, prompt in prompts.items()}
-    display(pd.DataFrame(table).T.rename_axis("Prompt"))
+    def cell(q, prompt):
+        passed = sum(checks[q](answer(QUESTIONS[q], prompt=prompt, quiet=True)) for _ in range(runs))
+        return ("✓" if passed else "✗") if runs == 1 else f"{passed}/{runs}"
+
+    table = {name: {q: cell(q, prompt) for q in QUESTIONS} for name, prompt in prompts.items()}
+    display(pd.DataFrame(table).T.rename_axis("Prompt" if runs == 1 else f"Prompt (passed / {runs} runs)"))
 
 
 # --------------------------------------------------------------------------------------------
