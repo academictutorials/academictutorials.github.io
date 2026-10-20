@@ -126,6 +126,15 @@ def ok(passed, message):
 # Small helpers for looking at text and chunks
 # --------------------------------------------------------------------------------------------
 
+def show_markdown(text):
+    """Display a model's answer as formatted text, keeping every dollar sign visible.
+
+    Jupyter treats text between two $ signs as a math formula, so "$34,650 ... $53,198" would be
+    rendered in italics with the $ signs and line breaks swallowed. Escaping each $ prevents that.
+    """
+    display(Markdown(text.replace("$", r"\$")))
+
+
 def show_region(text, keyword, before=200, after=500):
     """Print the part of a long text around the first place where `keyword` appears."""
     i = text.find(keyword)

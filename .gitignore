@@ -3,3 +3,4 @@
 *.zip
 EdRec/*.bak
 *Copy.ipynb
+EdRAG/resources/materials/instructor_tools/*.*
