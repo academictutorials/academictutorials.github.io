@@ -126,13 +126,20 @@ def ok(passed, message):
 # Small helpers for looking at text and chunks
 # --------------------------------------------------------------------------------------------
 
-def show_markdown(text):
-    """Display a model's answer as formatted text, keeping every dollar sign visible.
+def show_answer(text):
+    """Display a model's answer as formatted Markdown, with every dollar sign shown correctly.
 
-    Jupyter treats text between two $ signs as a math formula, so "$34,650 ... $53,198" would be
-    rendered in italics with the $ signs and line breaks swallowed. Escaping each $ prevents that.
+    Jupyter normally treats text between two $ signs as a math formula, so an answer such as
+    "($34,650) [1], New Undergraduate Students ($53,198)" would be shown partly in math italics,
+    with the $ signs and the words in between swallowed. Two things prevent that:
+      1. each $ is written as the HTML entity &#36;, so it is never read as the start of a formula;
+      2. the answer sits in a block marked "tex2jax_ignore mathjax_ignore", which tells the math
+         renderer to leave it alone.
+    Bold text, lists, and links still display normally, and copied text contains the $ signs.
     """
-    display(Markdown(text.replace("$", r"\$")))
+    display(Markdown('<div class="tex2jax_ignore mathjax_ignore">\n\n'
+                     + text.replace("$", "&#36;")
+                     + "\n\n</div>"))
 
 
 def show_region(text, keyword, before=200, after=500):
