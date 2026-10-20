@@ -313,18 +313,43 @@ EMBED_MODEL = "bge-small-en-v1.5"
 QUERY_PREFIX = "Represent this sentence for searching relevant passages: "   # bge's instruction for queries
 
 
+_local_model = None
+
+
+def _local_embedder():
+    """Load bge-small-en-v1.5 on this machine (used on Colab, where there is no tutorial gateway).
+
+    The model is downloaded once per session (about 130 MB) and then kept in memory.
+    """
+    global _local_model
+    if _local_model is None:
+        import transformers
+        from sentence_transformers import SentenceTransformer
+        transformers.logging.set_verbosity_error()          # hide "sequence longer than 512" warnings
+        _local_model = SentenceTransformer("BAAI/bge-small-en-v1.5")
+    return _local_model
+
+
 def embed(texts, is_query=False):
-    """Turn texts into vectors with the bge-small-en-v1.5 model on the tutorial gateway.
+    """Turn texts into vectors with the bge-small-en-v1.5 model.
 
     texts:    a list of strings
     is_query: True for questions; adds bge's query prefix to each text
+
+    On the tutorial JupyterHub the model runs on the tutorial gateway, which also caches vectors.
+    On Colab the same model runs on the Colab machine itself.
 
     Returns (vectors, info). vectors is a numpy array with one row of 384 numbers per text, each row
     scaled to length 1. info has the token count of each text, how many were longer than the model's
     512-token limit (and so cut off), and how many vectors came from the gateway's cache.
     """
-    import httpx
     texts = [QUERY_PREFIX + t if is_query else t for t in texts]
+    if not ON_HUB:                                               # Colab or another Jupyter: run locally
+        model = _local_embedder()
+        V = model.encode(texts, batch_size=64, normalize_embeddings=True, show_progress_bar=len(texts) > 100)
+        tokens = [len(model.tokenizer(t)["input_ids"]) for t in texts]   # counted before any cut-off
+        return V.astype(np.float32), {"tokens": tokens, "truncated": sum(n > 512 for n in tokens), "cached": 0}
+    import httpx
     vectors, info = [], {"tokens": [], "truncated": 0, "cached": 0}
     for i in range(0, len(texts), 128):                          # send at most 128 texts per request
         r = httpx.post(f"{GATEWAY}/embeddings", timeout=300, headers={"Authorization": f"Bearer {HUB_TOKEN}"},
