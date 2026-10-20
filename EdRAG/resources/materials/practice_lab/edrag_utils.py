@@ -358,6 +358,31 @@ def check_step4(answer):
     return a and b
 
 
+def quick_facts_check(answer, prompts):
+    """Run Q1-Q5 with each prompt and check every answer for its key facts. Prints a table of ticks.
+
+    answer:  the notebook's answer() function (called with quiet=True, so answers are not printed)
+    prompts: a dict that maps a short name to a prompt template
+
+    The checks are rough string tests of the expected answers (see the test questions page):
+      Q1 names $34,650; Q2 names all three tuition figures; Q3 gives the right email and phone;
+      Q4 states the one-course rule and the first-semester rule; Q5 says the documents do not have it
+      and gives no room number. A tick does not replace reading the answer.
+    """
+    refused = r"could not find|not (?:contain|include|provide|list|mention|specify)|no (?:specific )?information"
+    room = r"\b(?:room|office)\s*(?:number\s*)?(?:is\s*)?[A-Z]?\d{2,4}\b"
+    checks = {
+        "Q1": lambda t: "34,650" in t,
+        "Q2": lambda t: all(x in t for x in ("34,650", "53,198", "58,435")),
+        "Q3": lambda t: "supportdesk@illinoistech.edu" in t and "3375" in t,
+        "Q4": lambda t: bool(re.search(r"\bone\b.{0,30}online course", t, re.I)) and "first semester" in t.lower(),
+        "Q5": lambda t: bool(re.search(refused, t, re.I)) and not re.search(room, t, re.I),
+    }
+    table = {name: {q: "✓" if checks[q](answer(QUESTIONS[q], prompt=prompt, quiet=True)) else "✗"
+                    for q in QUESTIONS} for name, prompt in prompts.items()}
+    display(pd.DataFrame(table).T.rename_axis("Prompt"))
+
+
 # --------------------------------------------------------------------------------------------
 # Scores: saving them, and the tables and charts that compare approaches
 # --------------------------------------------------------------------------------------------

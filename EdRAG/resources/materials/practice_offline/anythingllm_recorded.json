@@ -1,36 +1,40 @@
 {
- "recorded": "2026-10-19",
+ "recorded": "2026-10-20",
  "model": "Qwen3.8-Flash through the tutorial gateway; embedding model BAAI/bge-small-en-v1.5; tuition page uploaded as a raw HTML file",
- "note": "Answers recorded on the tutorial server. Source excerpts show the first characters of each retrieved chunk.",
+ "note": "Answers recorded on the tutorial server, saved exactly as the model wrote them. Source excerpts show the first 300 characters of each retrieved chunk.",
  "with_and_without_documents": [
   {
    "workspace": "norag",
    "mode": "chat",
    "question": "I am a student at Illinois Institute of Technology. I am having problems with Canvas. Who should I contact, and how?",
-   "answer": "As an Illinois Institute of Technology (Illinois Tech) student, you should contact the **Academic Computing Support** team or the **Help Desk** for Canvas issues.\n\nHere is how to contact them:\n\n**1. Online Help Desk (Recommended)**\n* Go to the [Illinois Tech Help Desk website](https://helpdesk.iit.edu/).\n* Click on \"Submit a Ticket\" or use the live chat option if available.\n* Select \"Canvas\" as the category or mention it in your description.\n* Provide details such as your full name and IIT email address, a clear description of the problem, and screenshots or error messages if possible.\n\n**2. Phone Support**\n* Call the IIT Help Desk: **(312) 567-3800**\n* Available during normal business hours (typically Monday–Friday, 8:00 AM – 5:00 PM CT).\n\n**3. In-Person Support**\n* Visit the Help Desk located in the **Lewis Towers** building (Room 100 or nearby; check current location on the Help Desk website).\n* Bring your IIT ID card.\n\n**Tips:**\n* If your issue is urgent (e.g., due date approaching), clearly state this in your ticket or when calling.\n* For general Canvas navigation questions, you can also refer to the [Canvas Guide for Students](https://canvas.instructure.com/doc/guides/students/index.html) provided by Instructure.\n\nFor the fastest resolution, submitting a detailed ticket via the online Help Desk is usually the most efficient method.",
+   "answer": "For issues with Canvas at the Illinois Institute of Technology (IIT), you should contact **IIT’s Academic Computing Services (ACS)** or the **Help Desk**.\n\nHere is how to reach them:\n\n1.  **Online Help Ticket System**:\n    *   Go to the IIT Help Desk website: [https://helpdesk.iit.edu](https://helpdesk.iit.edu)\n    *   Submit a ticket describing your Canvas issue (include screenshots if possible). This is often the most efficient way to get tracked support.\n\n2.  **Phone Support**:\n    *   Call the IIT Help Desk at **(312) 567-3400**.\n    *   Hours are typically Monday–Friday, 8:00 AM – 5:00 PM CST.\n\n3.  **In-Person Support**:\n    *   Visit the **Academic Computing Services (ACS)** office in the **Armour Academic Center** (Room 105).\n    *   They can assist with login issues, course access problems, and technical glitches.\n\n4.  **Canvas-Specific Resources**:\n    *   Check the **IIT Canvas Guide** for students: [https://canvas.instructure.com/doc/](https://canvas.instructure.com/doc/) (general Canvas help) or look for IIT-specific tutorials on the ACS website.\n    *   If your issue is about grades or content within a specific course, first try contacting your **instructor**, as they may have control over certain settings.\n\n**Tip**: When contacting support, include:\n*   Your full name and IIT email address.\n*   The specific error message or problem description.\n*   The course name and section number.\n*   Screenshots of the issue, if applicable.",
    "sources": []
   },
   {
    "workspace": "edrag",
    "mode": "query",
    "question": "I am a student at Illinois Institute of Technology. I am having problems with Canvas. Who should I contact, and how?",
-   "answer": "You should contact the **OTS Support Desk**.\n\nAccording to the ITM Student Handbook, you can reach them via:\n\n* **Email:** [supportdesk@illinoistech.edu](mailto:supportdesk@illinoistech.edu)\n* **Phone:** 312.567.DESK (which is 312.567.3375)\n\nPlease note that ITM faculty, teaching assistants, and staff cannot assist you with Canvas issues or problems.",
+   "answer": "You should contact the **OTS Support Desk**.\n\n*   **Email:** supportdesk@illinoistech.edu\n*   **Phone:** 312.567.DESK (312.567.3375)\n\nPlease note that ITM faculty, teaching assistants, and staff cannot assist you with Canvas issues or problems.",
    "sources": [
     {
      "title": "ITM_Student_Handbook.pdf",
-     "excerpt": "purple Install Apps button, you can install the desktop versions of what used to be known as Microsoft Office: Word, PowerPoint, and Excel, as well as the deskt..."
+     "score": 0.7666296362876892,
+     "excerpt": "purple Install Apps button, you can install the desktop versions of what used to be known as Microsoft Office: Word, PowerPoint, and Excel, as well as the desktop versions of Outlook—for your university email—and Teams. You should be aware that file formatting is not always consistent between the on..."
     },
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "<div class=\"cell initial-12 medium-3 medium-auto initial-order-2 site-footer__contact-column medium-order-3\"> <h2 class=\"eyebrow\">Contact</h2> <div class=\"site-..."
+     "score": 0.6841952204704285,
+     "excerpt": "<div class=\"cell initial-12 medium-3 medium-auto initial-order-2 site-footer__contact-column medium-order-3\"> <h2 class=\"eyebrow\">Contact</h2> <div class=\"site-footer__contact\"> <p><strong>10 West 35th Street</strong><br><strong>Chicago, IL 60616</strong></p> <p class='phone'><i class='fi flaticon-p..."
     },
     {
      "title": "ITM_Student_Handbook.pdf",
-     "excerpt": "Illinois Institute of Technology Page 17 of 36 Department of Information Technology and Management Graduate Student Information & Departmental Policies Fall 202..."
+     "score": 0.6785991787910461,
+     "excerpt": "Illinois Institute of Technology Page 17 of 36 Department of Information Technology and Management Graduate Student Information & Departmental Policies Fall 2025  Advisee Responsibilities: Your responsibilities as an advisee include:  Know and Interface with your Adviser: Familiarize yourself with..."
     },
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "<div class=\"cell initial-12 medium-3 site-footer__campus-column initial-order-4\"> <div class=\"site-footer__campus\"> <h2 cla..."
+     "score": 0.6731721758842468,
+     "excerpt": "<div class=\"cell initial-12 medium-3 site-footer__campus-column initial-order-4\"> <div class=\"site-footer__campus\"> <h2 class=\"eyebrow\">Campus</h2> <ul> <li> <a href=\"/emergency\">Emergency Information</a> </li> <li> <a href=\"/hr/careers\">Employment</a> </li> <li> <a href=\"https://www.iit.edu/alumni\"..."
     }
    ]
   }
@@ -39,115 +43,140 @@
   "Q1": {
    "workspace": "edrag",
    "mode": "query",
-   "answer": "Based on the provided documents, there is no single tuition rate for all graduate students. The text states that \"Fees for graduate students will vary by program.\"\n\nHowever, the documents do provide specific cost estimates for certain programs:\n\n* **New JD Student (Conviser Law Center):** Tuition is listed as **$34,650**.\n* **Chicago-Kent:** Fees and tuition \"vary by program.\" ",
+   "question": "What is the tuition rate for a graduate student?",
+   "answer": "Based on the provided documents, there is no single fixed tuition rate for graduate students. The text explicitly states that **\"Fees for graduate students will vary by program.\"**\n\nThe document provides specific cost estimates only for a **New JD Student (Conviser Law Center)** in the Day Program, where the tuition is listed as **$58,435** for the 2026–2027 academic year. For other graduate programs, you would need to confirm your specific program requirements and calculate tuition accordingly, as it depends on the number of credit hours required beyond the standard baseline.",
    "sources": [
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "<title>Tuition, Fees, and Costs | Illinois Institute of Technology</title> <link rel=\"stylesheet\" media=\"all\" href=\"/sites/default/files/css/css_KxmzBeGhvI-icGk..."
+     "score": 0.7174927592277527,
+     "excerpt": "<title>Tuition, Fees, and Costs | Illinois Institute of Technology</title> <link rel=\"stylesheet\" media=\"all\" href=\"/sites/default/files/css/css_KxmzBeGhvI-icGkY0rLU-_lmNjlu7R5rGjUmp-lT_LI.css?delta=0&amp;language=en&amp;theme=iit&amp;include=eJxdjEEOgzAMBD-U4idFDjYkqokjOynt7yvggMRltTMr7aK1486uG8Ny9..."
     },
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "insurance. Fees for graduate students will vary by program. Fees for <a href=\"https://kentlaw.iit.edu/law/admissions/financing-your-education/tuition-fees\" clas..."
+     "score": 0.7165823578834534,
+     "excerpt": "insurance. Fees for graduate students will vary by program. Fees for <a href=\"https://kentlaw.iit.edu/law/admissions/financing-your-education/tuition-fees\" class=\"elf-external elf-icon\" rel>Chicago-Kent</a> vary by program. Be sure to note that all students are required by law to have health insuran..."
     },
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "</div> </div> <div class=\"site-header__bottom\"> <nav id=\"main-menu\" class=\"main-menu accessible-menu\" data-item-open-text=\"Open the %s menu\" data-item-close-tex..."
+     "score": 0.716116726398468,
+     "excerpt": "</div> </div> <div class=\"site-header__bottom\"> <nav id=\"main-menu\" class=\"main-menu accessible-menu\" data-item-open-text=\"Open the %s menu\" data-item-close-text=\"Close the %s menu\"> <ul class=\"menu\"> <li class=\"menu-item--expanded li--level-one\"> <a href=\"/academics\" data-drupal-link-system-path=\"n..."
     },
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "hours per year. Some programs require additional credit hours beyond the standard 18 credit hours per year. Please confirm your program requirements and calcula..."
+     "score": 0.7097370624542236,
+     "excerpt": "hours per year. Some programs require additional credit hours beyond the standard 18 credit hours per year. Please confirm your program requirements and calculate your tuition accordingly.</p><table class=\"table\" style=\"width:55%;\"><tbody><tr><th style=\"width:30%;\"><a href=\"#tuition\"><strong>Tuition..."
     }
    ]
   },
   "Q2": {
    "workspace": "edrag",
    "mode": "query",
-   "answer": "Based on the provided documents, there is no specific tuition rate listed exclusively for \"international students.\" The document lists a standard annual tuition of 58,435.\n\nThe text notes that some programs require additional credit hours beyond the standard 18, advising students to confirm their specific program requirements. It does not indicate that international students pay a different base rate than domestic students in the excerpts provided.",
+   "question": "What is the tuition rate for an international student?",
+   "answer": "Based on the provided documents, there is no specific tuition rate listed exclusively for \"international students.\" The document lists tuition rates based on program type (e.g., New JD Student at Conviser Law Center) and general undergraduate/graduate estimates.\n\nFor example, one table shows a **Tuition** cost of **$34,650** (likely for an undergraduate or standard graduate program based on 18 credit hours per year), while another section for a **New JD Student (Conviser Law Center)** lists tuition as **$58,435**.\n\nInternational students typically pay the same tuition rates as domestic students in the same program at Illinois Institute of Technology, though they may have additional costs such as visa fees or health insurance requirements not detailed in these specific excerpts. Please confirm your specific program requirements to calculate the exact tuition.",
    "sources": [
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "<title>Tuition, Fees, and Costs | Illinois Institute of Technology</title> <link rel=\"stylesheet\" media=\"all\" href=\"/sites/default/files/css/css_KxmzBeGhvI-icGk..."
+     "score": 0.7160393595695496,
+     "excerpt": "<title>Tuition, Fees, and Costs | Illinois Institute of Technology</title> <link rel=\"stylesheet\" media=\"all\" href=\"/sites/default/files/css/css_KxmzBeGhvI-icGkY0rLU-_lmNjlu7R5rGjUmp-lT_LI.css?delta=0&amp;language=en&amp;theme=iit&amp;include=eJxdjEEOgzAMBD-U4idFDjYkqokjOynt7yvggMRltTMr7aK1486uG8Ny9..."
     },
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "<script src=\"/sites/default/files/js/js_k6EdgOt4RogSuGlwL2AljLAGuggFK7zLVegF5tRUQ_Q.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=iit&amp;include=eJxdyE..."
+     "score": 0.6889967322349548,
+     "excerpt": "<script src=\"/sites/default/files/js/js_k6EdgOt4RogSuGlwL2AljLAGuggFK7zLVegF5tRUQ_Q.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=iit&amp;include=eJxdyEEKwDAIAMEPFXxSMFGaEKmgBvr8BA899LazU9C08Bsws5BoxNDHL-1HwhbwVb6KznCLVpR0k0VanNFah__YDLQljg\"></script> <script src=\"//customer.cludo.com/script..."
     },
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "hours per year. Some programs require additional credit hours beyond the standard 18 credit hours per year. Please confirm your program requirements and calcula..."
+     "score": 0.6739693880081177,
+     "excerpt": "hours per year. Some programs require additional credit hours beyond the standard 18 credit hours per year. Please confirm your program requirements and calculate your tuition accordingly.</p><table class=\"table\" style=\"width:55%;\"><tbody><tr><th style=\"width:30%;\"><a href=\"#tuition\"><strong>Tuition..."
     },
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "Unidos\\u0022,\\u0022fr\\u0022:\\u0022\\\\u00c9tats-Unis\\u0022,\\u0022ja\\u0022:\\u0022\\\\u30a2\\\\u30e1\\\\u30ea\\\\u30ab\\u0022,\\u0022pt-BR\\u0022:\\u0022EUA\\u0022,\\u0022ru\\u002..."
+     "score": 0.6739442944526672,
+     "excerpt": "Unidos\\u0022,\\u0022fr\\u0022:\\u0022\\\\u00c9tats-Unis\\u0022,\\u0022ja\\u0022:\\u0022\\\\u30a2\\\\u30e1\\\\u30ea\\\\u30ab\\u0022,\\u0022pt-BR\\u0022:\\u0022EUA\\u0022,\\u0022ru\\u0022:\\u0022\\\\u0421\\\\u0428\\\\u0410\\u0022,\\u0022zh-CN\\u0022:\\u0022\\\\u7f8e\\\\u56fd\\u0022}},\\u0022location\\u0022:{\\u0022accuracy_radius\\u0022:5,\\u002..."
     }
    ]
   },
   "Q3": {
    "workspace": "edrag",
    "mode": "query",
-   "answer": "You should direct your Canvas problems to the **OTS Support Desk**.\n\nHere is how you can contact them:\n\n* **Email:** supportdesk@illinoistech.edu\n* **Phone:** 312.567.DESK (which is 312.567.3375)\n\nPlease note that ITM faculty, teaching assistants, and staff cannot assist you with Canvas issues or problems.",
+   "question": "I am having problems with Canvas. Who should I contact, and how?",
+   "answer": "You should direct your Canvas problems to the **OTS Support Desk**. You can contact them via:\n\n*   **Email:** supportdesk@illinoistech.edu\n*   **Phone:** 312.567.DESK (312.567.3375)\n\nPlease note that ITM faculty, teaching assistants, and staff cannot assist you with Canvas issues.",
    "sources": [
     {
      "title": "ITM_Student_Handbook.pdf",
-     "excerpt": "purple Install Apps button, you can install the desktop versions of what used to be known as Microsoft Office: Word, PowerPoint, and Excel, as well as the deskt..."
+     "score": 0.6928146481513977,
+     "excerpt": "purple Install Apps button, you can install the desktop versions of what used to be known as Microsoft Office: Word, PowerPoint, and Excel, as well as the desktop versions of Outlook—for your university email—and Teams. You should be aware that file formatting is not always consistent between the on..."
     },
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "<div class=\"cell initial-12 medium-3 medium-auto initial-order-2 site-footer__contact-column medium-order-3\"> <h2 class=\"eyebrow\">Contact</h2> <div class=\"site-..."
+     "score": 0.5805264711380005,
+     "excerpt": "<div class=\"cell initial-12 medium-3 medium-auto initial-order-2 site-footer__contact-column medium-order-3\"> <h2 class=\"eyebrow\">Contact</h2> <div class=\"site-footer__contact\"> <p><strong>10 West 35th Street</strong><br><strong>Chicago, IL 60616</strong></p> <p class='phone'><i class='fi flaticon-p..."
     },
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "<script type=\"application/json\" data-drupal-selector=\"drupal-settings-json\">{\"path\":{\"baseUrl\":\"\\/\",\"pathPrefix\":\"\",\"currentPath\":\"node\\/55606\",\"currentPathIsAd..."
+     "score": 0.5798800587654114,
+     "excerpt": "<script type=\"application/json\" data-drupal-selector=\"drupal-settings-json\">{\"path\":{\"baseUrl\":\"\\/\",\"pathPrefix\":\"\",\"currentPath\":\"node\\/55606\",\"currentPathIsAdmin\":false,\"isFront\":false,\"currentLanguage\":\"en\"},\"pluralDelimiter\":\"\\u0003\",\"suppressDeprecationErrors\":true,\"klaro\":{\"config\":{\"elementId..."
     },
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "<script src=\"/sites/default/files/js/js_k6EdgOt4RogSuGlwL2AljLAGuggFK7zLVegF5tRUQ_Q.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=iit&amp;include=eJxdyE..."
+     "score": 0.5649520754814148,
+     "excerpt": "<script src=\"/sites/default/files/js/js_k6EdgOt4RogSuGlwL2AljLAGuggFK7zLVegF5tRUQ_Q.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=iit&amp;include=eJxdyEEKwDAIAMEPFXxSMFGaEKmgBvr8BA899LazU9C08Bsws5BoxNDHL-1HwhbwVb6KznCLVpR0k0VanNFah__YDLQljg\"></script> <script src=\"//customer.cludo.com/script..."
     }
    ]
   },
   "Q4": {
    "workspace": "edrag",
    "mode": "query",
-   "answer": "It depends on your visa status:\n\n* **If you are an international student on an F1 Visa:** No, you cannot take two online courses. The handbook states that only one online course may be taken per semester due to a U.S. government requirement that cannot be waived. Additionally, in your first semester, you cannot enroll in any online sections at all.\n* **If you are not on an F1 Visa:** The provided text does not explicitly state a limit on the number of online courses for domestic students or other visa types. However, it notes that undergraduate degrees cannot be completed entirely through distance learning and that live attendance is required for certain programs. You should check with your academic advisor or the specific department policies for non-F1 students regarding course load limits.",
+   "question": "Can I take two online courses this semester?",
+   "answer": "It depends on your visa status:\n\n*   **If you are an international student on an F1 Visa:** No, you cannot take two online courses this semester. The handbook states that only one online course may be taken per semester for F1 visa students, which is a U.S. government requirement that cannot be waived.\n*   **If you are not on an F1 Visa:** Yes, you can generally take multiple online courses. Most non-laboratory courses in the ITM programs are offered online via IIT Online. However, please note that it is not possible to complete an undergraduate degree entirely through distance learning; live course attendance is required for undergraduates.",
    "sources": [
     {
      "title": "ITM_Student_Handbook.pdf",
-     "excerpt": "the lectures at the last moment to prepare themselves for an assignment, with bad results. Live students sometime use the Canvas facilities as a substitute for..."
+     "score": 0.7472384572029114,
+     "excerpt": "the lectures at the last moment to prepare themselves for an assignment, with bad results. Live students sometime use the Canvas facilities as a substitute for attending class regularly, thus depriving themselves of the best option available to them, which is the live class. As a result, instructors..."
     },
     {
      "title": "ITM_Student_Handbook.pdf",
-     "excerpt": "Page 28 of 36 Illinois Institute of Technology Department of Information Technology and Management Graduate Student Information & Departmental Policies Fall 202..."
+     "score": 0.720098614692688,
+     "excerpt": "Page 28 of 36 Illinois Institute of Technology Department of Information Technology and Management Graduate Student Information & Departmental Policies Fall 2025 ITM Online Course Policies Most non-laboratory courses in our programs are offered on the Internet via IIT Online. Online course lectures ..."
     },
     {
      "title": "ITM_Student_Handbook.pdf",
-     "excerpt": "adequate, poor or unsatisfactory. Online Course Exam Information: For online section of a course, the instructor should pro- vide midterm and final exam proce..."
+     "score": 0.7147758603096008,
+     "excerpt": "adequate, poor or unsatisfactory.  Online Course Exam Information: For online section of a course, the instructor should pro- vide midterm and final exam process details for you in the syllabus, i.e. will the exam be available online, either as a regular exam or as a take-home exam? Will the exam b..."
     },
     {
      "title": "ITM_Student_Handbook.pdf",
-     "excerpt": "or take-home; in-class examinations may be open- or closed-book. For courses where it is appropriate, the final examination may be a final project or research p..."
+     "score": 0.6830793619155884,
+     "excerpt": "or take-home; in-class examinations may be open- or closed-book. For courses where it is appropriate, the final examination may be a final project or research paper presentation. However, all instructors must give one closed-book, closed-note exam each term unless specifically waived by the departme..."
     }
    ]
   },
   "Q5": {
    "workspace": "edrag",
    "mode": "query",
-   "answer": "Based on the provided documents, there is no specific information regarding Prof. Yong Zheng's personal office room number or his individual office hours.\n\nHowever, the ITM Student Handbook provides general policies for faculty office hours that may apply:\n\n* **Full-Time Faculty:** Office hours and location must be published on course websites or Canvas and posted prominently on the faculty member's office door. The location (Rice Campus or Mies Campus) and times should match the course schedule.\n* **Adjunct Faculty:** May hold office hours in the 15th-floor offices at the Michael Paul Galvin Tower (either in the Faculty/Staff Lounge 15E4-2 or the open area beyond the reception desk) if at the Mies Campus. They are also required to be available via email, chat, or video conference.\n\nTo find Prof. Yong Zheng's specific details, you should check:\n\n* His course syllabus or website on Canvas.\n* Any posting on his physical office door.\n* Directly emailing him using your official hawk.illinoistech.edu address (including your A#).",
+   "question": "May I know Prof. Yong Zheng's office room number and office hours?",
+   "answer": "Based on the provided documents, there is no specific information regarding Prof. Yong Zheng's individual office room number or exact office hours.\n\nHowever, the **ITM Student Handbook** provides general guidelines for faculty office hours:\n*   **Full-Time Faculty:** Must establish and publish reasonable office hours on course websites or Canvas and post them prominently on their office door. The location and times should match the campus (Rice or Mies) and time of day (day or evening) of the course. They must be present in their office during posted hours and available via email or other electronic means.\n*   **Adjunct Faculty:** Should maintain one to two hours of physical presence if possible and must be available via email, chat, video conference, or other electronic means. At the Mies Campus, adjuncts may hold office hours in the 15th floor offices in the Michael Paul Galvin Tower (Faculty/Staff Lounge 15E4-2 or the open area beyond the reception desk).\n\nTo find Prof. Yong Zheng's specific details, you should check his course syllabus on **Canvas**, look for postings on his office door, or contact him directly via email using your Illinois Tech email address.",
    "sources": [
     {
      "title": "ITM_Student_Handbook.pdf",
-     "excerpt": "online only. Full-Time Faculty: Full-time ITM faculty members and adjunct faculty members who are full-time Illinois Tech employees will establish and publish..."
+     "score": 0.6680671572685242,
+     "excerpt": "online only.  Full-Time Faculty: Full-time ITM faculty members and adjunct faculty members who are full-time Illinois Tech employees will establish and publish/post reasonable office hours. Office hours and location must be given on any course web sites or Canvas and office hours should be posted p..."
     },
     {
      "title": "ITM_Student_Handbook.pdf",
-     "excerpt": "Illinois Institute of Technology Page 17 of 36 Department of Information Technology and Management Graduate Student Information & Departmental Policies Fall 202..."
+     "score": 0.6040682792663574,
+     "excerpt": "Illinois Institute of Technology Page 17 of 36 Department of Information Technology and Management Graduate Student Information & Departmental Policies Fall 2025  Advisee Responsibilities: Your responsibilities as an advisee include:  Know and Interface with your Adviser: Familiarize yourself with..."
     },
     {
      "title": "Tuition_Fees.html",
-     "excerpt": "<a href=\"/directory?organization_type=16\" data-drupal-link-query=\"{&quot;organization_type&quot;:&quot;16&quot;}\" data-drupal-link-system-path=\"node/91\">Adminis..."
+     "score": 0.5978623628616333,
+     "excerpt": "<a href=\"/directory?organization_type=16\" data-drupal-link-query=\"{&quot;organization_type&quot;:&quot;16&quot;}\" data-drupal-link-system-path=\"node/91\">Administrative Offices</a> </li> <li class=\"menu-item--collapsed li--level-two\"> <a href=\"/about/contact-us\" data-drupal-link-system-path=\"node/195..."
     },
     {
      "title": "ITM_Student_Handbook.pdf",
-     "excerpt": "purple Install Apps button, you can install the desktop versions of what used to be known as Microsoft Office: Word, PowerPoint, and Excel, as well as the deskt..."
+     "score": 0.5973947644233704,
+     "excerpt": "purple Install Apps button, you can install the desktop versions of what used to be known as Microsoft Office: Word, PowerPoint, and Excel, as well as the desktop versions of Outlook—for your university email—and Teams. You should be aware that file formatting is not always consistent between the on..."
     }
    ]
   }
