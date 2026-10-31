@@ -1,20 +1,20 @@
 {
- "recorded": "2026-10-20",
- "model": "Qwen3.8-Flash through the tutorial gateway; embedding model BAAI/bge-small-en-v1.5; tuition page uploaded as a raw HTML file",
+ "recorded": "2026-10-31",
+ "model": "Qwen3.8-27B on the Jetstream2 Inference Service, through the tutorial gateway (edrag-chat); embedding model BAAI/bge-small-en-v1.5; tuition page uploaded as a raw HTML file",
  "note": "Answers recorded on the tutorial server, saved exactly as the model wrote them. Source excerpts show the first 300 characters of each retrieved chunk.",
  "with_and_without_documents": [
   {
    "workspace": "norag",
    "mode": "chat",
    "question": "I am a student at Illinois Institute of Technology. I am having problems with Canvas. Who should I contact, and how?",
-   "answer": "For issues with Canvas at the Illinois Institute of Technology (IIT), you should contact **IIT’s Academic Computing Services (ACS)** or the **Help Desk**.\n\nHere is how to reach them:\n\n1.  **Online Help Ticket System**:\n    *   Go to the IIT Help Desk website: [https://helpdesk.iit.edu](https://helpdesk.iit.edu)\n    *   Submit a ticket describing your Canvas issue (include screenshots if possible). This is often the most efficient way to get tracked support.\n\n2.  **Phone Support**:\n    *   Call the IIT Help Desk at **(312) 567-3400**.\n    *   Hours are typically Monday–Friday, 8:00 AM – 5:00 PM CST.\n\n3.  **In-Person Support**:\n    *   Visit the **Academic Computing Services (ACS)** office in the **Armour Academic Center** (Room 105).\n    *   They can assist with login issues, course access problems, and technical glitches.\n\n4.  **Canvas-Specific Resources**:\n    *   Check the **IIT Canvas Guide** for students: [https://canvas.instructure.com/doc/](https://canvas.instructure.com/doc/) (general Canvas help) or look for IIT-specific tutorials on the ACS website.\n    *   If your issue is about grades or content within a specific course, first try contacting your **instructor**, as they may have control over certain settings.\n\n**Tip**: When contacting support, include:\n*   Your full name and IIT email address.\n*   The specific error message or problem description.\n*   The course name and section number.\n*   Screenshots of the issue, if applicable.",
+   "answer": "If you are experiencing problems with Canvas at the Illinois Institute of Technology (IIT), you should contact the **IIT Information Technology (IT) Help Desk**.\n\nHere is how to contact them:\n\n1.  **Call:** (312) 567-4357\n2.  **Online:** Visit the IIT IT website and submit a support ticket or live chat if available at [help.iit.edu](https://help.iit.edu)\n3.  **Email:** it-help@iit.edu (Note: Calling or submitting a ticket online is often faster for technical troubleshooting)\n\n**Recommendation:**\n*   For immediate issues, calling or using live chat is usually the fastest.\n*   When contacting them, be prepared to provide your full name, student ID number, and a clear description of the issue (e.g., \"I cannot log into Canvas,\" \"My grades are not posting,\" etc.).\n*   Check your IIT email for any service notices, as there may be known outages.",
    "sources": []
   },
   {
    "workspace": "edrag",
    "mode": "query",
    "question": "I am a student at Illinois Institute of Technology. I am having problems with Canvas. Who should I contact, and how?",
-   "answer": "You should contact the **OTS Support Desk**.\n\n*   **Email:** supportdesk@illinoistech.edu\n*   **Phone:** 312.567.DESK (312.567.3375)\n\nPlease note that ITM faculty, teaching assistants, and staff cannot assist you with Canvas issues or problems.",
+   "answer": "According to the ITM Student Handbook, you should contact the **OTS Support Desk** for any Canvas problems or issues.\n\nYou can reach them via:\n*   **Email:** supportdesk@illinoistech.edu\n*   **Phone:** 312.567.DESK (3375)\n\nPlease note that ITM faculty, teaching assistants, and staff cannot assist you with Canvas issues.",
    "sources": [
     {
      "title": "ITM_Student_Handbook.pdf",
@@ -44,7 +44,7 @@
    "workspace": "edrag",
    "mode": "query",
    "question": "What is the tuition rate for a graduate student?",
-   "answer": "Based on the provided documents, there is no single fixed tuition rate for graduate students. The text explicitly states that **\"Fees for graduate students will vary by program.\"**\n\nThe document provides specific cost estimates only for a **New JD Student (Conviser Law Center)** in the Day Program, where the tuition is listed as **$58,435** for the 2026–2027 academic year. For other graduate programs, you would need to confirm your specific program requirements and calculate tuition accordingly, as it depends on the number of credit hours required beyond the standard baseline.",
+   "answer": "Based on the provided context, the document does not list a single uniform tuition rate for all graduate students. Instead, it states that **\"Fees for graduate students will vary by program.\"**\n\nHowever, the context does provide specific figures for certain programs:\n\n*   **General Graduate Program (estimated annual cost):** The table in Context 3 lists a **Tuition** of **$34,650**. The surrounding text notes that this is based on the minimum number of credits (typically 18 credit hours per year) and that some programs may require additional credits.\n*   **New JD Student (Conviser Law Center):** For the JD Day Program, the tuition is listed as **$58,435**.\n\nSince you did not specify a particular program, the general figure provided in the cost table is **$34,650**, but you should confirm the specific requirements for your individual program as tuition can vary.",
    "sources": [
     {
      "title": "Tuition_Fees.html",
@@ -72,7 +72,7 @@
    "workspace": "edrag",
    "mode": "query",
    "question": "What is the tuition rate for an international student?",
-   "answer": "Based on the provided documents, there is no specific tuition rate listed exclusively for \"international students.\" The document lists tuition rates based on program type (e.g., New JD Student at Conviser Law Center) and general undergraduate/graduate estimates.\n\nFor example, one table shows a **Tuition** cost of **$34,650** (likely for an undergraduate or standard graduate program based on 18 credit hours per year), while another section for a **New JD Student (Conviser Law Center)** lists tuition as **$58,435**.\n\nInternational students typically pay the same tuition rates as domestic students in the same program at Illinois Institute of Technology, though they may have additional costs such as visa fees or health insurance requirements not detailed in these specific excerpts. Please confirm your specific program requirements to calculate the exact tuition.",
+   "answer": "Based on the provided documents, there is no separate tuition rate specified specifically for international students. The document lists a tuition rate of **$34,650** (for a program based on 18 credit hours) and **$58,435** for the JD Day Program, but it does not distinguish between domestic and international student pricing. Typically, U.S. universities charge the same tuition to international and domestic students, with costs varying instead by financial aid, scholarships, or specific fees.\n\nYou may want to check the full \"Tuition, Fees, and Costs\" page for any additional notes about international student fees (such as visa fees or additional health insurance requirements), which are not included in the provided context.",
    "sources": [
     {
      "title": "Tuition_Fees.html",
@@ -100,7 +100,7 @@
    "workspace": "edrag",
    "mode": "query",
    "question": "I am having problems with Canvas. Who should I contact, and how?",
-   "answer": "You should direct your Canvas problems to the **OTS Support Desk**. You can contact them via:\n\n*   **Email:** supportdesk@illinoistech.edu\n*   **Phone:** 312.567.DESK (312.567.3375)\n\nPlease note that ITM faculty, teaching assistants, and staff cannot assist you with Canvas issues.",
+   "answer": "You should contact the **OTS Support Desk**. You can reach them by:\n\n*   **Email:** supportdesk@illinoistech.edu\n*   **Phone:** 312.567.DESK (3375)\n\nPlease note that ITM faculty, teaching assistants, and staff cannot assist with Canvas issues or problems.",
    "sources": [
     {
      "title": "ITM_Student_Handbook.pdf",
@@ -128,7 +128,7 @@
    "workspace": "edrag",
    "mode": "query",
    "question": "Can I take two online courses this semester?",
-   "answer": "It depends on your visa status:\n\n*   **If you are an international student on an F1 Visa:** No, you cannot take two online courses this semester. The handbook states that only one online course may be taken per semester for F1 visa students, which is a U.S. government requirement that cannot be waived.\n*   **If you are not on an F1 Visa:** Yes, you can generally take multiple online courses. Most non-laboratory courses in the ITM programs are offered online via IIT Online. However, please note that it is not possible to complete an undergraduate degree entirely through distance learning; live course attendance is required for undergraduates.",
+   "answer": "Based on the provided ITM Student Handbook, whether you can take two online courses depends on your student status:\n\n*   **If you are an International Student on an F1 Visa:** **No.** You may only take **one** online course per semester. This is a U.S. government requirement that cannot be waived. Additionally, in your first semester in the program, you cannot enroll in any online sections.\n*   **If you are a U.S. Student or a Student in a Live Section:** The provided text does not explicitly state a limit on the number of online courses you can take. However, it notes that for students enrolled in **live** sections, actual classroom attendance is expected and online content cannot serve as a substitute. If you are enrolling in the online *sections* of multiple courses (as a fully online student or if allowed by your specific program), the text provided does not contain a restriction limiting you to one.\n\n**Recommendation:** If you are an F1 visa student, you are restricted to one. If you are not an F1 visa student, please verify with your specific program or academic advisor, as the provided text only explicitly limits online courses for F1 students.",
    "sources": [
     {
      "title": "ITM_Student_Handbook.pdf",
@@ -156,7 +156,7 @@
    "workspace": "edrag",
    "mode": "query",
    "question": "May I know Prof. Yong Zheng's office room number and office hours?",
-   "answer": "Based on the provided documents, there is no specific information regarding Prof. Yong Zheng's individual office room number or exact office hours.\n\nHowever, the **ITM Student Handbook** provides general guidelines for faculty office hours:\n*   **Full-Time Faculty:** Must establish and publish reasonable office hours on course websites or Canvas and post them prominently on their office door. The location and times should match the campus (Rice or Mies) and time of day (day or evening) of the course. They must be present in their office during posted hours and available via email or other electronic means.\n*   **Adjunct Faculty:** Should maintain one to two hours of physical presence if possible and must be available via email, chat, video conference, or other electronic means. At the Mies Campus, adjuncts may hold office hours in the 15th floor offices in the Michael Paul Galvin Tower (Faculty/Staff Lounge 15E4-2 or the open area beyond the reception desk).\n\nTo find Prof. Yong Zheng's specific details, you should check his course syllabus on **Canvas**, look for postings on his office door, or contact him directly via email using your Illinois Tech email address.",
+   "answer": "Based on the provided documents, I cannot provide the specific office room number or office hours for Prof. Yong Zheng.\n\nThe **ITM Student Handbook** outlines general policies for faculty office hours:\n*   **Full-Time Faculty** must publish reasonable office hours on their course websites, Canvas, or office door. The location and times should match the course location (Rice or Mies Campus) and times.\n*   **Adjunct Faculty** are expected to maintain 1–2 hours of physical presence office hours if possible and must be available via email or other electronic means. At the Mies Campus, adjuncts may hold office hours in the 15th floor offices in the Michael Paul Galvin Tower (either in the Faculty/Staff Lounge at 15E4-2 or the open area beyond the reception desk).\n\nHowever, the specific contact details, room numbers, or scheduled hours for individual faculty members like Prof. Yong Zheng are not listed in the provided text. I recommend checking the following resources mentioned in the handbook for this specific information:\n1.  **Canvas**: Log in to find Prof. Zheng's course, where office hours and location should be posted prominently.\n2.  **Faculty Web Page**: The handbook notes that faculty web pages are often linked on Canvas; this page should contain contact and office hour information.\n3.  **Course Syllabus**: ITM faculty use Canvas to deliver syllabi, which typically include office hours.",
    "sources": [
     {
      "title": "ITM_Student_Handbook.pdf",
