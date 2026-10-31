@@ -232,38 +232,41 @@
             <h4 class="text-left mt-4">Opening <span class="module-time">(5 min)</span></h4>
             <ul>
               <li>Logging in to the tutorial JupyterHub and checking the environment</li>
+              <li>Two ways to run the labs: the tutorial server today, and Google Colab after class</li>
             </ul>
 
             <h4 class="text-left mt-4">Module 1. Four Ways to Build RAG <span class="module-time">(20 min)</span></h4>
             <ul>
-              <li>Why a generic chatbot invents answers to advising questions</li>
+              <li>Why we need RAG: a chatbot without documents invents contact details</li>
+              <li>How RAG works: find the relevant chunks, then answer from them</li>
+              <li>The two tasks, the five test questions, and the 0–2 scoring rule</li>
               <li>Consumer platforms (NotebookLM)</li>
               <li>Managed RAG APIs (Gemini File Search)</li>
-              <li>Self-hosted open-source applications (AnythingLLM)</li>
-              <li>Trading convenience for control over retrieval and data</li>
+              <li>Self-hosted applications (AnythingLLM)</li>
+              <li>Comparing the scores, and trading convenience for control over retrieval and data</li>
             </ul>
 
             <h4 class="text-left mt-4">Module 2. Building an Advising Assistant from Scratch <span class="module-time">(35 min)</span></h4>
             <ul>
-              <li>Why Markdown, and converting HTML and PDF documents to it</li>
+              <li>Converting HTML and PDF documents to Markdown, and fixing merged table cells</li>
               <li>Fixed-length versus heading-based chunking</li>
               <li>Embedding and retrieval with a small open model</li>
-              <li>Grounded generation with citations and refusal</li>
-              <li>Scoring the test set and comparing the four approaches</li>
+              <li>A grounded prompt with citations, and testing a one-sentence change</li>
+              <li>Scoring the test set, comparing the four approaches, and other ways to evaluate RAG</li>
               <li>After class (optional): hybrid BM25 retrieval, a vector database, and student profiles</li>
             </ul>
 
             <h4 class="text-left mt-4">Module 3. How Far Can We Trust the Answers? <span class="module-time">(8 min)</span></h4>
             <ul>
-              <li>Where a RAG answer can still go wrong: documents, conversion, chunking, retrieval, generation, and run-to-run variation</li>
-              <li>Answers versus evidence: from search results to cited answers</li>
-              <li>Confidence signals, and why they must be checked against real outcomes</li>
+              <li>Where a RAG answer can still go wrong, with examples from our own tests</li>
+              <li>Showing the source chunks with every answer so that people can check it</li>
+              <li>Confidence signals, and why they must be tested before use</li>
             </ul>
 
             <h4 class="text-left mt-4">Module 4. Optional: Course Advising as a More Complicated Task <span class="module-time">(7 min)</span></h4>
             <ul>
-              <li>Why course recommendation needs more than retrieval</li>
-              <li>A hybrid design with a structured catalog, rule-based checks, RAG, and a recommender</li>
+              <li>Why course recommendation needs rules and student data, not just retrieval</li>
+              <li>A hybrid design: rules decide what is allowed, RAG explains the policies, and an advisor confirms</li>
               <li>Safeguards for responsible deployment</li>
               <li>Q&amp;A</li>
             </ul>
@@ -333,7 +336,7 @@
                   <li><span class="item-label">Testing:</span> testing questions, expected answers, and scoring rubric, see <a href="edrag-test-questions.html#questions-section" target="_blank" rel="noopener">edrag-test-questions.html</a></li>
                 </ul>
               </li>
-              <li>Slides: <span class="note">coming soon</span></li>
+              <li>Slides: <a href="resources/slides/EdRAG_SIGCITE2026_public.pdf" target="_blank" rel="noopener">EdRAG_SIGCITE2026_public.pdf</a></li>
               <li>Reference: Yong Zheng (2026). <a href="https://doi.org/10.1145/3857770.3858323" target="_blank" rel="noopener">Hands-on RAG for Education: From a Generic Chatbot to a Document-Grounded System</a>. In Proceedings of the 27th ACM Annual Conference on Cybersecurity and Information Technology Education (ACM SIGCITE '26). ACM. DOI: 10.1145/3857770.3858323</li>
             </ul>
           </div>
