@@ -103,6 +103,18 @@
 		  background: #606060;
 		}
 	  .presenters .teacher { max-width: 360px; margin: 0 auto; }
+	  .presenters .teacher .role {
+	    display: inline-block;
+	    color: var(--sky-dark) !important;
+	    background: var(--sand);
+	    font-weight: 700;
+	    font-size: 0.85rem;
+	    letter-spacing: 0.04em;
+	    text-transform: uppercase;
+	    padding: 0.15rem 0.75rem;
+	    border-radius: 999px;
+	    margin-bottom: 0.6rem;
+	  }
 	  
 	  
 	.footer-section { padding: 1.5rem 0 !important; }
@@ -285,12 +297,25 @@
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-lg-9 text-center on-blue" data-aos="fade-up">
-            <div class="teacher text-center">
+          <div class="col-md-6 col-lg-4 mb-4 text-center on-blue d-flex" data-aos="fade-up">
+            <div class="teacher text-center w-100">
               <img src="images/yz-pic.png" alt="Yong Zheng" class="img-fluid rounded-circle mx-auto mb-3 d-block" style="width: 160px; height: 160px; object-fit: cover;">
               <div class="py-2">
+                <p class="role">Presenter</p>
                 <h3 class="text-black"><a href="https://itm.iit.edu/zheng/" target="_blank" rel="noopener">Dr. Yong Zheng</a></h3>
                 <p>Associate Professor<br>School of Computing, <br>Illinois Institute of Technology, <br>Chicago, IL, USA</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 text-center on-blue d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="teacher text-center w-100">
+              <!-- Save Jian's photo as images/jz-pic.png. Until then, the initials below are shown instead. -->
+              <img src="images/jz-pic.jpeg" alt="Jian Zhang" class="img-fluid rounded-circle mx-auto mb-3 d-block" style="width: 160px; height: 160px; object-fit: cover;"
+                   onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22%3E%3Ccircle cx=%2280%22 cy=%2280%22 r=%2280%22 fill=%22%23eaf5fc%22/%3E%3Ctext x=%2250%25%22 y=%2254%25%22 font-family=%22Arial%22 font-size=%2256%22 font-weight=%22bold%22 fill=%22%231479b8%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EJZ%3C/text%3E%3C/svg%3E';">
+              <div class="py-2">
+                <p class="role">Assistant</p>
+                <h3 class="text-black"><a>Jian Zhang</a></h3>
+                <p>Ph.D. Student<br>School of Computing, <br>Illinois Institute of Technology, <br>Chicago, IL, USA</p>
               </div>
             </div>
           </div>
